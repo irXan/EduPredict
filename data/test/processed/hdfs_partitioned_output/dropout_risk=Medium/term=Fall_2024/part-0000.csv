@@ -1,0 +1,7 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10008,DB401,Fall 2024,2,54.0,62.0,56.4,2.26,4,23,Female,Low,8.0,Limited,High School,11,8.6,3,10,74.0,45,28,61.4,2,62.0,Medium,False
+STU10011,AI301,Fall 2024,2,53.6,60.0,55.5,2.22,4,24,Female,Medium,43.8,Moderate,Bachelors,11,23.3,4,10,90.4,45,21,47.4,7,58.28,Medium,False
+STU10032,SE501,Fall 2024,2,54.1,53.9,54.0,2.16,3,21,Male,High,4.5,Moderate,Bachelors,12,14.8,3,9,61.6,50,30,61.0,6,60.82,Medium,False
+STU10035,SE501,Fall 2024,2,53.8,59.0,55.3,2.21,3,21,Female,Medium,0.3,Moderate,Masters,12,15.5,5,6,64.6,45,31,68.2,1,65.02,Medium,False
+STU10046,AI301,Fall 2024,2,64.2,57.5,62.2,2.49,3,18,Male,Medium,14.0,Moderate,Bachelors,7,9.4,5,2,94.2,45,28,62.6,5,60.64,Medium,False
+STU10090,DS201,Fall 2024,2,50.8,47.7,49.9,2.0,3,18,Male,High,6.4,High-Speed,Doctorate,9,16.5,4,4,54.8,40,28,69.3,4,59.11,Medium,False

@@ -1,0 +1,101 @@
+student_id,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education
+STU10000,24,Male,High,3.3,High-Speed,Bachelors
+STU10001,25,Female,Low,4.6,Moderate,Bachelors
+STU10002,24,Female,Low,18.1,Moderate,Bachelors
+STU10003,18,Female,Medium,3.6,High-Speed,Masters
+STU10004,21,Male,High,1.8,High-Speed,High School
+STU10005,22,Male,Low,7.7,Moderate,Bachelors
+STU10006,25,Male,Medium,26.1,High-Speed,High School
+STU10007,21,Female,Medium,11.3,High-Speed,Bachelors
+STU10008,23,Female,Low,8.0,Limited,High School
+STU10009,22,Female,Medium,1.0,High-Speed,High School
+STU10010,24,Male,Medium,9.1,High-Speed,High School
+STU10011,24,Female,Medium,43.8,Moderate,Bachelors
+STU10012,22,Female,Medium,1.4,High-Speed,Bachelors
+STU10013,24,Male,Medium,6.9,High-Speed,Bachelors
+STU10014,20,Male,Low,19.9,Limited,Doctorate
+STU10015,22,Male,High,12.8,High-Speed,High School
+STU10016,21,Male,Medium,11.3,Limited,High School
+STU10017,22,Female,Low,11.5,Limited,Masters
+STU10018,25,Male,Low,4.2,High-Speed,High School
+STU10019,24,Male,Medium,3.3,High-Speed,Doctorate
+STU10020,20,Female,Medium,15.7,High-Speed,High School
+STU10021,20,Male,Low,15.8,High-Speed,Doctorate
+STU10022,23,Male,Medium,19.2,High-Speed,High School
+STU10023,21,Male,Low,23.2,Moderate,Masters
+STU10024,19,Male,Medium,6.8,High-Speed,Bachelors
+STU10025,19,Female,Low,6.6,High-Speed,Doctorate
+STU10026,22,Male,Medium,15.2,Moderate,High School
+STU10027,23,Female,Medium,10.0,High-Speed,Bachelors
+STU10028,18,Female,High,11.5,Moderate,Doctorate
+STU10029,22,Male,Low,15.1,High-Speed,Bachelors
+STU10030,23,Female,Medium,21.0,High-Speed,Bachelors
+STU10031,21,Male,Low,3.9,Moderate,Bachelors
+STU10032,21,Male,High,4.5,Moderate,Bachelors
+STU10033,21,Female,High,0.9,Moderate,Bachelors
+STU10034,21,Female,Low,8.2,Moderate,Bachelors
+STU10035,21,Female,Medium,0.3,Moderate,Masters
+STU10036,23,Male,High,6.0,High-Speed,High School
+STU10037,23,Male,Medium,7.4,High-Speed,High School
+STU10038,20,Female,Medium,3.2,Moderate,Doctorate
+STU10039,25,Male,Low,8.5,Moderate,Masters
+STU10040,19,Male,Low,0.3,Limited,Bachelors
+STU10041,24,Female,High,0.4,High-Speed,Bachelors
+STU10042,21,Male,High,16.4,High-Speed,High School
+STU10043,18,Female,Medium,4.2,Moderate,High School
+STU10044,24,Male,Medium,1.3,High-Speed,Bachelors
+STU10045,23,Female,Medium,7.0,Limited,High School
+STU10046,18,Male,Medium,14.0,Moderate,Bachelors
+STU10047,18,Female,High,2.3,High-Speed,High School
+STU10048,18,Female,High,9.3,Moderate,Doctorate
+STU10049,20,Male,Medium,0.8,Moderate,Doctorate
+STU10050,23,Female,Medium,0.5,High-Speed,Bachelors
+STU10051,18,Female,Low,7.2,Limited,Bachelors
+STU10052,21,Female,Low,7.4,High-Speed,High School
+STU10053,22,Female,High,9.6,Moderate,Masters
+STU10054,18,Female,Medium,12.3,High-Speed,Bachelors
+STU10055,20,Female,Low,35.4,Moderate,High School
+STU10056,24,Male,Low,6.9,High-Speed,Masters
+STU10057,23,Male,Medium,3.7,High-Speed,Masters
+STU10058,25,Male,Low,15.1,Limited,Masters
+STU10059,20,Male,Low,3.0,High-Speed,Bachelors
+STU10060,18,Male,Medium,5.5,High-Speed,Bachelors
+STU10061,23,Male,Medium,0.8,Limited,Bachelors
+STU10062,22,Female,Medium,0.2,Limited,Masters
+STU10063,18,Male,Low,31.2,High-Speed,Masters
+STU10064,20,Male,Medium,17.2,Moderate,High School
+STU10065,19,Female,Low,11.3,High-Speed,High School
+STU10066,21,Male,Medium,5.0,High-Speed,High School
+STU10067,25,Female,Medium,1.8,High-Speed,Masters
+STU10068,24,Male,Medium,1.6,Moderate,Doctorate
+STU10069,20,Other,High,2.7,Moderate,High School
+STU10070,23,Female,Medium,7.6,Moderate,Bachelors
+STU10071,25,Male,Medium,11.9,Moderate,High School
+STU10072,25,Male,Low,10.3,High-Speed,Doctorate
+STU10073,25,Female,Medium,3.1,High-Speed,Masters
+STU10074,18,Female,Low,29.4,High-Speed,Masters
+STU10075,21,Female,Low,12.7,High-Speed,Bachelors
+STU10076,18,Female,High,7.7,High-Speed,Bachelors
+STU10077,23,Male,Medium,9.0,Moderate,High School
+STU10078,18,Male,High,5.2,High-Speed,High School
+STU10079,19,Male,Medium,2.7,High-Speed,Masters
+STU10080,21,Female,Medium,4.2,High-Speed,Masters
+STU10081,21,Female,Medium,13.5,Moderate,Doctorate
+STU10082,23,Male,Medium,0.1,Moderate,Doctorate
+STU10083,24,Male,Medium,1.2,High-Speed,Bachelors
+STU10084,19,Male,Low,0.4,High-Speed,Bachelors
+STU10085,20,Male,Medium,0.4,Moderate,Masters
+STU10086,18,Female,Low,18.4,High-Speed,Masters
+STU10087,22,Female,Low,11.6,Moderate,High School
+STU10088,18,Female,Medium,6.1,Moderate,Bachelors
+STU10089,25,Male,Low,1.0,High-Speed,High School
+STU10090,18,Male,High,6.4,High-Speed,Doctorate
+STU10091,20,Female,High,6.1,Limited,Bachelors
+STU10092,18,Female,High,1.8,High-Speed,High School
+STU10093,19,Female,Medium,5.4,High-Speed,Bachelors
+STU10094,19,Female,Low,4.8,Moderate,Bachelors
+STU10095,21,Female,High,9.1,Limited,High School
+STU10096,23,Female,Medium,9.6,Limited,High School
+STU10097,24,Male,High,0.4,Moderate,Bachelors
+STU10098,22,Male,High,4.5,High-Speed,Bachelors
+STU10099,25,Male,High,9.3,High-Speed,Bachelors

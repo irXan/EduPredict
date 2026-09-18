@@ -1,0 +1,6 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10026,AI301,Fall 2023,0,43.3,30.1,39.4,1.58,3,22,Male,Medium,15.2,Moderate,High School,13,15.1,7,8,69.0,45,25,54.6,4,60.6,Medium,True
+STU10048,SE501,Fall 2023,0,55.8,59.2,56.8,2.27,3,18,Female,High,9.3,Moderate,Doctorate,8,19.7,5,9,73.9,40,20,49.9,1,51.73,Medium,False
+STU10058,AI301,Fall 2023,0,52.1,51.8,52.0,2.08,3,25,Male,Low,15.1,Limited,Masters,7,18.6,5,4,68.6,45,28,62.1,3,55.27,Medium,False
+STU10088,DB401,Fall 2023,0,59.0,60.1,59.3,2.37,4,18,Female,Medium,6.1,Moderate,Bachelors,14,13.2,5,10,77.0,45,34,76.1,5,74.45,Medium,False
+STU10092,AI301,Fall 2023,0,58.8,49.4,56.0,2.24,4,18,Female,High,1.8,High-Speed,High School,8,8.3,1,12,83.7,45,30,65.9,2,61.69,Medium,False

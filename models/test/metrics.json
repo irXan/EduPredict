@@ -1,0 +1,6 @@
+{
+  "performance_r2": 0.8877,
+  "performance_rmse": 0.1412,
+  "dropout_accuracy": 65.0,
+  "n_students": 300
+}

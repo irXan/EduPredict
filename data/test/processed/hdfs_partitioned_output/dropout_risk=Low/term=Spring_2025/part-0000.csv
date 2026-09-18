@@ -1,0 +1,8 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10003,DS201,Spring 2025,3,66.0,64.1,65.4,2.62,4,18,Female,Medium,3.6,High-Speed,Masters,7,12.9,6,3,90.6,40,25,62.7,3,59.97,Low,False
+STU10009,AI301,Spring 2025,3,44.3,40.6,43.2,1.73,4,22,Female,Medium,1.0,High-Speed,High School,17,8.5,2,3,63.6,45,36,79.9,5,78.17,Low,True
+STU10014,CS101,Spring 2025,3,55.1,48.3,53.1,2.12,3,20,Male,Low,19.9,Limited,Doctorate,13,13.8,7,12,72.7,50,34,67.8,2,67.94,Low,False
+STU10051,SE501,Spring 2025,3,64.6,62.6,64.0,2.56,4,18,Female,Low,7.2,Limited,Bachelors,16,9.4,5,13,71.1,40,34,85.7,3,81.07,Low,False
+STU10074,SE501,Spring 2025,3,73.2,77.5,74.5,2.98,3,18,Female,Low,29.4,High-Speed,Masters,11,7.2,4,14,98.7,50,33,65.5,4,68.99,Low,False
+STU10076,SE501,Spring 2025,3,64.8,63.6,64.4,2.58,3,18,Female,High,7.7,High-Speed,Bachelors,12,8.6,4,12,78.3,45,31,68.6,3,67.96,Low,False
+STU10079,AI301,Spring 2025,3,78.7,80.3,79.2,3.17,3,19,Male,Medium,2.7,High-Speed,Masters,17,23.5,1,14,77.4,45,40,87.9,2,84.93,Low,False

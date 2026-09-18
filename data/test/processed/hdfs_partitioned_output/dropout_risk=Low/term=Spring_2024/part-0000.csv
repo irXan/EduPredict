@@ -1,0 +1,7 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10010,SE501,Spring 2024,1,49.9,47.8,49.3,1.97,3,24,Male,Medium,9.1,High-Speed,High School,12,13.3,4,14,85.1,50,36,72.3,1,71.17,Low,False
+STU10034,DB401,Spring 2024,1,56.9,58.0,57.2,2.29,3,21,Female,Low,8.2,Moderate,Bachelors,7,11.4,5,7,83.7,50,31,61.3,2,57.89,Low,False
+STU10042,DB401,Spring 2024,1,65.7,62.0,64.6,2.58,4,21,Male,High,16.4,High-Speed,High School,11,13.3,10,12,70.4,45,33,73.7,5,67.43,Low,False
+STU10044,AI301,Spring 2024,1,42.6,43.9,43.0,1.72,4,24,Male,Medium,1.3,High-Speed,Bachelors,13,8.0,4,3,60.4,50,36,72.0,6,67.58,Low,True
+STU10083,DS201,Spring 2024,1,57.3,57.5,57.4,2.3,4,24,Male,Medium,1.2,High-Speed,Bachelors,9,17.0,1,4,75.2,45,29,64.2,2,60.64,Low,False
+STU10084,CS101,Spring 2024,1,63.0,65.9,63.9,2.56,4,19,Male,Low,0.4,High-Speed,Bachelors,10,14.8,6,7,89.5,50,33,66.7,0,66.25,Low,False

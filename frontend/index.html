@@ -1,0 +1,1844 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPredict | Academic Affairs & Retention Portal</title>
+
+    <!-- Professional Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .top-nav-link.active {
+            color: #b45309;
+            border-bottom: 2px solid #d97706;
+            font-weight: 600;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .anim-fade-up { animation: fadeUp .55s ease-out both; }
+        .anim-fade-in { animation: fadeIn .45s ease-out both; }
+        .tab-enter { animation: fadeUp .3s ease-out both; }
+        .alert-enter { animation: fadeUp .35s ease-out both; }
+        .boot-bar { transition: width 1.2s ease-in-out; }
+        .boot-step { opacity: .35; transition: opacity .4s ease; }
+        .boot-step.active { opacity: 1; color: #fcd34d; }
+        #bootLoader { transition: opacity .45s ease; }
+        #bootLoader.done { opacity: 0; pointer-events: none; }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-700 font-sans min-h-full flex flex-col antialiased">
+
+    <!-- ========================================================= -->
+    <!-- BOOT LOADER SCREEN (shown first, then routes to login)    -->
+    <!-- ========================================================= -->
+    <div id="bootLoader" style="z-index:100" class="fixed inset-0 bg-gradient-to-br from-[#042f2e] via-[#0f766e] to-[#042f2e] flex items-center justify-center">
+        <div class="text-center px-6">
+            <div class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 shadow-lg shadow-teal-950/40 flex items-center justify-center text-white text-2xl mb-5 anim-fade-in">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-white tracking-tight anim-fade-up">EduPredict</h1>
+            <p class="text-xs text-teal-100/70 mt-1 anim-fade-up">Academic Affairs & Student Retention Intelligence</p>
+
+            <div class="mt-8 w-64 mx-auto">
+                <div class="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+                    <div id="bootBar" class="h-full w-0 rounded-full bg-gradient-to-r from-teal-400 to-amber-400 boot-bar"></div>
+                </div>
+                <div id="bootSteps" class="mt-4 space-y-1.5 text-left text-[11px] font-medium text-teal-100/70">
+                    <div class="boot-step">Initializing Analytics Engine</div>
+                    <div class="boot-step">Loading Predictive Models</div>
+                    <div class="boot-step">Warming Data Pipelines</div>
+                    <div class="boot-step">Securing User Sessions</div>
+                </div>
+            </div>
+            <p id="bootStatus" class="mt-6 text-[11px] text-amber-200/70">Preparing secure workspace...</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 1. TOP HORIZONTAL NAVIGATION BAR (NO SIDEBAR)            -->
+    <!-- ========================================================= -->
+    <header class="w-full bg-white border-b border-gray-200 sticky top-0 z-30 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Left: Application Brand & Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-teal-700 flex items-center justify-center text-white text-base shadow-sm">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-base font-bold text-slate-900 tracking-tight">EduPredict</span>
+                            <span class="text-[11px] font-medium text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">Academic Portal</span>
+                        </div>
+                        <p class="text-xs text-slate-500 hidden sm:block">Office of Academic Affairs & Student Retention</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Horizontal Navigation Links -->
+                <nav id="appNav" class="hidden md:flex space-x-8 h-full">
+                    <button onclick="switchTab('overview')" id="nav-overview" class="top-nav-link active inline-flex items-center px-1 text-sm font-medium text-slate-600 hover:text-slate-900 transition h-full border-b-2 border-transparent">
+                        <i class="fa-solid fa-chart-pie mr-2 text-slate-400"></i>
+                        Dashboard
+                    </button>
+
+                    <button onclick="switchTab('students')" id="nav-students" class="top-nav-link inline-flex items-center px-1 text-sm font-medium text-slate-600 hover:text-slate-900 transition h-full border-b-2 border-transparent">
+                        <i class="fa-solid fa-users mr-2 text-slate-400"></i>
+                        Student Records
+                    </button>
+
+                    <button onclick="switchTab('predict')" id="nav-predict" class="top-nav-link inline-flex items-center px-1 text-sm font-medium text-slate-600 hover:text-slate-900 transition h-full border-b-2 border-transparent">
+                        <i class="fa-solid fa-calculator mr-2 text-slate-400"></i>
+                        Risk Evaluation
+                    </button>
+
+                    <button onclick="switchTab('courses')" id="nav-courses" class="top-nav-link inline-flex items-center px-1 text-sm font-medium text-slate-600 hover:text-slate-900 transition h-full border-b-2 border-transparent">
+                        <i class="fa-solid fa-book-open mr-2 text-slate-400"></i>
+                        Course Demand
+                    </button>
+                </nav>
+
+                <!-- Right: Status, Modals & User Profile -->
+                <div class="flex items-center space-x-3">
+                    <!-- Live WebSocket Status Indicator -->
+                    <div class="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs text-slate-600">
+                        <span id="wsDot" class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
+                        <span id="wsText" class="text-[11px] font-medium">Live Feed</span>
+                    </div>
+
+                    <!-- System Diagnostics -->
+                    <button onclick="openSystemModal()" title="System Diagnostics" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition">
+                        <i class="fa-solid fa-server text-sm"></i>
+                    </button>
+
+                    <!-- Helpdesk Support -->
+                    <button onclick="openSupportModal()" title="Helpdesk Support" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition">
+                        <i class="fa-solid fa-headset text-sm"></i>
+                    </button>
+
+                    <!-- User Profile & Role Switcher -->
+                    <div class="flex items-center space-x-2 pl-2 border-l border-gray-200">
+                        <div class="text-right hidden sm:block">
+                            <div id="headerUser" class="text-xs font-semibold text-slate-900 leading-tight">Guest</div>
+                            <div id="headerRole" class="text-[11px] text-slate-500">Not logged in</div>
+                        </div>
+                        <button id="authButton" onclick="handleAuthAction()" class="px-3 py-1.5 bg-teal-700 hover:bg-teal-800 text-white rounded-md text-xs font-medium transition shadow-xs">
+                            Login
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Sub-bar -->
+        <div id="mobileNav" class="md:hidden border-t border-gray-200 px-4 py-2 flex justify-around bg-slate-50 text-xs font-medium text-slate-600">
+            <button onclick="switchTab('overview')" id="mnav-overview" class="py-1">Dashboard</button>
+            <button onclick="switchTab('students')" id="mnav-students" class="py-1">Students</button>
+            <button onclick="switchTab('predict')" id="mnav-predict" class="py-1">Evaluation</button>
+            <button onclick="switchTab('courses')" id="mnav-courses" class="py-1">Courses</button>
+        </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- 2. MAIN CONTENT BODY                                      -->
+    <!-- ========================================================= -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- ===================================================== -->
+        <!-- TAB 1: DASHBOARD OVERVIEW                             -->
+        <!-- ===================================================== -->
+        <section id="view-overview" class="space-y-8">
+
+            <!-- Page Title & Header Actions -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-gray-200">
+                <div>
+                    <h2 id="overviewTitle" class="text-xl font-bold text-slate-900 tracking-tight">Institutional Retention Dashboard</h2>
+                    <p id="overviewSub" class="text-sm text-slate-500 mt-1">Real-time summary of student enrollment, performance indicators, and attrition risk.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="refreshData()" class="px-3 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-gray-300 rounded-lg text-xs font-medium transition flex items-center space-x-2 shadow-xs">
+                        <i class="fa-solid fa-rotate text-slate-400"></i>
+                        <span>Sync Data</span>
+                    </button>
+                    <button onclick="switchTab('predict')" id="overviewEvaluateBtn" class="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-medium transition flex items-center space-x-2 shadow-xs">
+                        <i class="fa-solid fa-calculator text-amber-100"></i>
+                        <span>Evaluate Student</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4 Clean Corporate Metric KPI Blocks -->
+            <div id="institutionKpis" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Total Students -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-slate-500">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Total Enrolled Students</span>
+                        <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div id="kpiTotalStudents" class="text-3xl font-bold text-slate-900 tracking-tight">5,000</div>
+                        <p class="text-xs text-slate-500 mt-1">Active across 5 academic tracks</p>
+                    </div>
+                </div>
+
+                <!-- Average GPA -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-slate-500">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Cohort Average GPA</span>
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div id="kpiAvgGpa" class="text-3xl font-bold text-emerald-600 tracking-tight">3.12</div>
+                        <p class="text-xs text-slate-500 mt-1">Benchmark threshold: 3.00</p>
+                    </div>
+                </div>
+
+                <!-- High Risk Students -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-slate-500">
+                        <span class="text-xs font-semibold uppercase tracking-wider">High Retention Risk</span>
+                        <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div id="kpiHighRisk" class="text-3xl font-bold text-amber-600 tracking-tight">18.9%</div>
+                        <p id="kpiHighRiskCount" class="text-xs text-slate-500 mt-1">945 students flagged for review</p>
+                    </div>
+                </div>
+
+                <!-- Detected Anomalies -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-slate-500">
+                        <span class="text-xs font-semibold uppercase tracking-wider">Academic Outliers</span>
+                        <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div id="kpiAnomalies" class="text-3xl font-bold text-rose-600 tracking-tight">248</div>
+                        <p class="text-xs text-slate-500 mt-1">Significant performance deviations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Clean Flat Light-Themed Chart Containers -->
+            <div id="institutionCharts" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Chart 1: Dropout Risk Breakdown (Doughnut) -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="pb-3 border-b border-gray-100">
+                        <h3 class="text-sm font-bold text-slate-900">Retention Risk Distribution</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Cohort categorized by Random Forest classifier</p>
+                    </div>
+                    <div class="relative h-64 w-full my-3 flex items-center justify-center">
+                        <canvas id="dropoutRiskChart"></canvas>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Classification Accuracy</span>
+                        <span id="classificationAccuracy" class="font-semibold text-emerald-600">--</span>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Course Enrollees (Bar Chart) -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="pb-3 border-b border-gray-100">
+                        <h3 class="text-sm font-bold text-slate-900">Course Enrollment Counts</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Active course loads aggregated across departments</p>
+                    </div>
+                    <div class="relative h-64 w-full my-3">
+                        <canvas id="courseEnrollmentChart"></canvas>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Total Course Slots</span>
+                        <span class="font-semibold text-slate-900">5,000 Students</span>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Department GPA Performance (Line Chart) -->
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                    <div class="pb-3 border-b border-gray-100">
+                        <h3 class="text-sm font-bold text-slate-900">Average GPA by Department</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Academic benchmark comparison (0.0 to 4.0 scale)</p>
+                    </div>
+                    <div class="relative h-64 w-full my-3">
+                        <canvas id="courseGpaChart"></canvas>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Institutional Benchmark</span>
+                        <span class="font-semibold text-emerald-600">3.00 GPA</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Lower: Recent Academic Alerts Table -->
+            <div id="institutionAlerts" class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Recent Academic Advisory Alerts</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Live events dispatched from the retention monitoring engine</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span id="alertsCountBadge" class="text-xs text-slate-500 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full font-medium">2 alerts recorded</span>
+                        <button onclick="clearAlertsLog()" class="text-xs text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-lg transition font-medium">
+                            Clear Table
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Standard Light-Themed Notification Table -->
+                <div class="overflow-x-auto mt-4">
+                    <table class="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+                        <thead class="bg-slate-50 text-slate-600 border-b border-gray-200">
+                            <tr>
+                                <th class="py-3 px-4 font-semibold">Severity</th>
+                                <th class="py-3 px-4 font-semibold">Student ID</th>
+                                <th class="py-3 px-4 font-semibold">Advisory Description</th>
+                                <th class="py-3 px-4 font-semibold text-right">Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alertsListBody" class="divide-y divide-gray-200 text-slate-700">
+                            <tr class="even:bg-slate-50/70 hover:bg-teal-50/40 transition">
+                                <td class="py-3 px-4">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">High Risk</span>
+                                </td>
+                                <td class="py-3 px-4 font-semibold text-slate-900">STU10482</td>
+                                <td class="py-3 px-4 text-slate-600">Attendance dropped to 48.0% with predicted GPA of 1.72</td>
+                                <td class="py-3 px-4 text-slate-500 text-right">10:45 AM</td>
+                            </tr>
+                            <tr class="even:bg-slate-50/70 hover:bg-teal-50/40 transition">
+                                <td class="py-3 px-4">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-800 border border-rose-200">Outlier</span>
+                                </td>
+                                <td class="py-3 px-4 font-semibold text-slate-900">STU10129</td>
+                                <td class="py-3 px-4 text-slate-600">High LMS activity recorded with exam scores falling below 35%</td>
+                                <td class="py-3 px-4 text-slate-500 text-right">10:40 AM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Student Personal Overview Page (single screen for Student role) -->
+            <div id="studentPersonalCard" class="hidden space-y-6">
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-gray-200">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 tracking-tight">My Academic Profile</h2>
+                        <p class="text-sm text-slate-500 mt-1">Your complete academic standing, predictive model results and engagement metrics in one view.</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span id="chipStudentId" class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-[11px] font-semibold">--</span>
+                        <span id="chipCourse" class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-semibold">--</span>
+                        <span id="chipTerm" class="px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-[11px] font-semibold">--</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">My Cumulative GPA</span>
+                        <div id="myGpa" class="text-3xl font-bold text-emerald-600 mt-1">--</div>
+                        <p class="text-xs text-slate-500 mt-1">Scale 0.0 to 4.0</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Attendance Rate</span>
+                        <div id="myAttendance" class="text-3xl font-bold text-slate-900 mt-1">--</div>
+                        <p id="myAttendanceDetail" class="text-xs text-slate-500 mt-1"></p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Quiz Average</span>
+                        <div id="myQuiz" class="text-3xl font-bold text-slate-900 mt-1">--</div>
+                        <p class="text-xs text-slate-500 mt-1">Across all online quizzes</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Weekly LMS Activity</span>
+                        <div id="myLms" class="text-3xl font-bold text-slate-900 mt-1">--</div>
+                        <p id="myLmsDetail" class="text-xs text-slate-500 mt-1"></p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Retention Risk</span>
+                        <div id="myRisk" class="text-2xl font-bold mt-1">--</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Anomaly Status</span>
+                        <div id="myAnomaly" class="text-base font-semibold mt-1">--</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                    <!-- Predictive Model Results -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900 pb-3 border-b border-gray-100">Predictive Model Results</h3>
+                            <div class="mt-4 space-y-2.5">
+                                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Predicted GPA</span>
+                                    <div id="predGpa" class="text-2xl font-bold text-slate-900 mt-1">--</div>
+                                </div>
+                                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Predicted Risk Level</span>
+                                    <div id="predRisk" class="text-lg font-bold mt-1">--</div>
+                                </div>
+                                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Behavioral Anomaly</span>
+                                    <div id="predAnom" class="text-sm font-semibold mt-1">--</div>
+                                </div>
+                                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Model Confidence</span>
+                                    <div id="predConf" class="text-base font-semibold text-slate-800 mt-1">--</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="pt-3 border-t border-gray-100 text-xs text-slate-500 mt-2">Run live on your latest record by the Random Forest retention suite.</p>
+                    </div>
+
+                    <!-- Performance Metrics Chart -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <h3 class="text-sm font-bold text-slate-900 pb-3 border-b border-gray-100">Performance Metrics</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Your main academic indicators normalized to 100.</p>
+                        <div class="relative h-64 w-full my-3">
+                            <canvas id="studentMetricsChart"></canvas>
+                        </div>
+                        <p class="text-xs text-slate-500 pt-3 border-t border-gray-100">Tailored from the master retention dataset.</p>
+                    </div>
+
+                    <!-- Detailed Record -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+                        <h3 class="text-sm font-bold text-slate-900 pb-3 border-b border-gray-100">Student Record Details</h3>
+                        <div id="studentDetailGrid" class="grid grid-cols-2 gap-x-4 gap-y-2.5 mt-4 text-xs">
+                            <div class="flex justify-between"><span class="text-slate-500">Age</span><span id="dAge" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Distance (km)</span><span id="dDist" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Midterm</span><span id="dMidterm" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Assignments</span><span id="dAssign" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Final Score</span><span id="dFinal" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Credits</span><span id="dCredits" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Video Hours</span><span id="dVideo" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Forum Posts</span><span id="dForum" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Quiz Attempts</span><span id="dQuizAtt" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Classes Attended</span><span id="dClasses" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Tardies</span><span id="dTardy" class="font-semibold text-slate-900">--</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Engagement Index</span><span id="dEngage" class="font-semibold text-slate-900">--</span></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-4 pt-3 border-t border-gray-100">Faculty and administrators are notified automatically whenever your retention risk is flagged as High.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- TAB 2: STUDENT RECORDS ROSTER                         -->
+        <!-- ===================================================== -->
+        <section id="view-students" class="hidden space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-gray-200">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900 tracking-tight">Student Academic Records</h2>
+                    <p class="text-sm text-slate-500 mt-1">Directory of student attendance, coursework, engagement metrics, and risk status.</p>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <input type="text" id="studentSearchInput" onkeyup="filterStudentsTable()" placeholder="Search by Student ID or Course..." class="bg-white border border-gray-300 rounded-lg px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600 w-64 shadow-xs">
+                    <select id="studentRiskFilter" onchange="filterStudentsTable()" class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600 shadow-xs">
+                        <option value="ALL">All Risk Tiers</option>
+                        <option value="Low">Low Risk</option>
+                        <option value="Medium">Medium Risk</option>
+                        <option value="High">High Risk</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Student Directory Table -->
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-xs">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 text-slate-600 border-b border-gray-200">
+                            <tr>
+                                <th class="py-3.5 px-4 font-semibold">Student ID</th>
+                                <th class="py-3.5 px-4 font-semibold">Course Track</th>
+                                <th class="py-3.5 px-4 font-semibold">Academic Term</th>
+                                <th class="py-3.5 px-4 font-semibold text-right">Attendance</th>
+                                <th class="py-3.5 px-4 font-semibold text-right">LMS Logins</th>
+                                <th class="py-3.5 px-4 font-semibold text-right">Quiz Average</th>
+                                <th class="py-3.5 px-4 font-semibold text-right">Cumulative GPA</th>
+                                <th class="py-3.5 px-4 font-semibold text-center">Retention Risk</th>
+                                <th class="py-3.5 px-4 font-semibold text-center">Outlier Flag</th>
+                                <th id="actionColHead" class="py-3.5 px-4 font-semibold text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody" class="divide-y divide-gray-200 text-slate-700">
+                            <tr>
+                                <td colspan="10" class="text-center py-10 text-slate-500">Loading student directory...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- TAB 3: MACHINE LEARNING RISK EVALUATION               -->
+        <!-- ===================================================== -->
+        <section id="view-predict" class="hidden space-y-6">
+
+            <div class="pb-2 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight">Student Risk Evaluation Calculator</h2>
+                <p class="text-sm text-slate-500 mt-1">Simulate individual student characteristics to generate real-time predictive retention and performance scores.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Evaluation Input Form -->
+                <div class="lg:col-span-2 bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+                    <h3 class="text-sm font-bold text-slate-900 pb-3 border-b border-gray-100">Student Parameters</h3>
+
+                    <form id="predictionForm" onsubmit="handlePrediction(event)" class="space-y-4 mt-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Student ID</label>
+                                <input type="text" id="pStudentId" value="STU10842" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Student Age</label>
+                                <input type="number" id="pAge" value="20" min="16" max="60" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Campus Distance (km)</label>
+                                <input type="number" step="0.1" id="pDist" value="6.5" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Midterm Exam Score (0-100)</label>
+                                <input type="number" id="pMidterm" value="52" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Assignment Average (0-100)</label>
+                                <input type="number" id="pAssign" value="58" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Class Attendance Rate (%)</label>
+                                <input type="number" id="pAttendance" value="56" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Weekly LMS Logins</label>
+                                <input type="number" id="pLms" value="4" min="0" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Quiz Average Score (0-100)</label>
+                                <input type="number" id="pQuiz" value="60" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                            <div>
+                                <label class="block text-slate-700 font-semibold mb-1">Tardy / Late Instances</label>
+                                <input type="number" id="pTardy" value="7" min="0" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-semibold py-2.5 rounded-lg text-xs transition shadow-xs flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-play text-xs"></i>
+                                <span>Execute Risk & GPA Evaluation</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Result Scorecard -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 pb-3 border-b border-gray-100">Evaluation Outcome</h3>
+
+                        <div id="emptyResultPlaceholder" class="py-16 text-center text-slate-500 text-xs">
+                            <i class="fa-solid fa-chart-simple text-3xl text-slate-300 block mb-2"></i>
+                            Enter student parameters and click "Execute Risk & GPA Evaluation"
+                        </div>
+
+                        <div id="predictionResultCard" class="hidden space-y-3 mt-4">
+                            <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Predicted Cumulative GPA</span>
+                                <div id="outGpa" class="text-3xl font-bold text-slate-900 mt-1">2.45 / 4.0</div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Retention Risk Level</span>
+                                <div id="outRisk" class="text-lg font-bold text-amber-600 mt-1">Medium Risk</div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Behavioral Anomaly Status</span>
+                                <div id="outAnomaly" class="text-sm font-semibold text-rose-600 mt-1">Flagged Outlier</div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Model Confidence Score</span>
+                                <div id="outConfidence" class="text-base font-semibold text-slate-800 mt-1">94.2%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 text-xs text-slate-500 text-center">
+                        Predictions are powered by Random Forest Regressor & Classifier models.
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- TAB 4: COURSE DEMAND FORECASTING                      -->
+        <!-- ===================================================== -->
+        <section id="view-courses" class="hidden space-y-6">
+
+            <div class="pb-2 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight">Course Demand & Enrollment Forecasting</h2>
+                <p class="text-sm text-slate-500 mt-1">Aggregated department enrollments and multi-term projection generated via the PySpark batch pipeline.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="courseCardsContainer">
+                <!-- Dynamically populated from /api/analytics/course-demand -->
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- 3. MODALS (RBAC, DIAGNOSTICS, SUPPORT)                    -->
+    <!-- ========================================================= -->
+
+    <!-- Login Screen (standalone - app shell stays hidden until authenticated) -->
+    <div id="loginView" class="hidden fixed inset-0" style="z-index:60">
+        <div class="min-h-full w-full overflow-hidden bg-gradient-to-br from-[#042f2e] via-[#0f766e] to-[#042f2e] relative py-10 px-4 sm:px-6">
+            <div class="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-teal-500/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-24 -right-16 w-80 h-80 rounded-full bg-amber-500/15 blur-3xl"></div>
+
+            <div class="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 min-h-[80vh]">
+
+                <!-- Left: Institutional Brand Panel -->
+                <div class="hidden md:block">
+                    <div class="anim-fade-up">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white text-xl shadow-lg shadow-teal-950/40 mb-5">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white tracking-tight leading-tight">Predictive Intelligence<br>for Student <span class="text-amber-300">Retention</span></h2>
+                        <p class="text-sm text-teal-100/80 mt-4 max-w-sm">Big Data analytics, real-time risk detection, and role-based campus dashboards in one secure portal.</p>
+                    </div>
+
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start space-x-3 anim-fade-up">
+                            <span class="w-7 h-7 rounded-lg bg-teal-400/15 text-amber-300 flex items-center justify-center text-xs"><i class="fa-solid fa-server"></i></span>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Hadoop & PySpark Pipeline</p>
+                                <p class="text-xs text-teal-100/70">5,000 student records across 6 academic terms</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 anim-fade-up">
+                            <span class="w-7 h-7 rounded-lg bg-teal-400/15 text-amber-300 flex items-center justify-center text-xs"><i class="fa-solid fa-brain"></i></span>
+                            <div>
+                                <p class="text-sm font-semibold text-white">AI Retention Models</p>
+                                <p class="text-xs text-teal-100/70">GPA, dropout risk & course demand forecasts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 anim-fade-up">
+                            <span class="w-7 h-7 rounded-lg bg-teal-400/15 text-amber-300 flex items-center justify-center text-xs"><i class="fa-solid fa-bolt"></i></span>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Real-Time Alerts</p>
+                                <p class="text-xs text-teal-100/70">Live WebSocket advisory stream</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-[11px] font-medium anim-fade-in">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> All Systems Operational
+                    </div>
+                </div>
+
+                <!-- Right: Sign-In Card -->
+                <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-md mx-auto anim-fade-up">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-lg bg-teal-700 flex items-center justify-center text-white text-sm"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Sign In to EduPredict</h3>
+                            <p class="text-[11px] text-slate-500">Access is restricted by institutional role</p>
+                        </div>
+                    </div>
+
+                    <div id="loginError" class="hidden mt-4 px-3 py-2 bg-red-50 border border-red-200 rounded-lg text-xs text-red-700">
+                        Incorrect username or password. Please try again.
+                    </div>
+
+                    <form onsubmit="handleLoginSubmit(event)" class="mt-5 space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Username</label>
+                            <input id="loginUsername" type="text" required placeholder="Enter username" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
+                            <input id="loginPassword" type="password" value="password123" required placeholder="Enter password" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                        </div>
+                        <button type="submit" id="loginSubmitBtn" class="w-full bg-teal-700 hover:bg-teal-800 disabled:opacity-60 text-white font-semibold py-2.5 rounded-lg text-sm transition shadow-sm flex items-center justify-center space-x-2">
+                            <span id="loginBtnText">Sign In</span>
+                            <i id="loginBtnSpinner" class="fa-solid fa-circle-notch fa-spin hidden text-xs"></i>
+                        </button>
+                    </form>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <p class="text-[11px] text-slate-500 mb-3 text-center">Teachers & students use their own ID as password. Demo access:</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="quickLogin('admin')" class="p-2 bg-slate-50 hover:bg-teal-50 border border-gray-200 hover:border-teal-300 rounded-lg text-xs text-center transition">
+                                <i class="fa-solid fa-user-shield text-teal-600 mr-1"></i> Administrator
+                            </button>
+                            <button onclick="quickLogin('teacher_cs101')" class="p-2 bg-slate-50 hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 rounded-lg text-xs text-center transition">
+                                <i class="fa-solid fa-chalkboard-user text-emerald-600 mr-1"></i> Teacher (CS101)
+                            </button>
+                            <button onclick="quickLogin('analyst_john')" class="p-2 bg-slate-50 hover:bg-amber-50 border border-gray-200 hover:border-amber-300 rounded-lg text-xs text-center transition">
+                                <i class="fa-solid fa-chart-line text-amber-600 mr-1"></i> Analyst
+                            </button>
+                            <button onclick="quickLogin('STU10000')" class="p-2 bg-slate-50 hover:bg-amber-50 border border-gray-200 hover:border-amber-300 rounded-lg text-xs text-center transition">
+                                <i class="fa-solid fa-user-graduate text-amber-600 mr-1"></i> Student (STU10000)
+                            </button>
+                        </div>
+                        <p class="text-[11px] text-stone-400 text-center mt-3">Teacher: teacher_cs101 / teacher_cs101 &bull; Student: STU10000 / STU10000 &bull; Others: password123</p>
+                    </div>
+
+                    <p class="text-[11px] text-stone-400 text-center mt-5">Powered by FastAPI, PySpark, MongoDB & Random Forest</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Diagnostics Modal -->
+    <div id="systemModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 rounded-xl p-6 max-w-md w-full shadow-lg">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-200">
+                <h3 class="text-sm font-bold text-slate-900">System Diagnostics & Environment</h3>
+                <button onclick="closeSystemModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="space-y-2.5 mt-4 text-xs">
+                <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-slate-600">Backend REST API</span>
+                    <span class="text-emerald-700 font-semibold">Operational (Healthy)</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-slate-600">System SLA Availability</span>
+                    <span class="text-slate-900 font-semibold">99.95%</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-slate-600">Average Response Latency</span>
+                    <span class="text-slate-900 font-semibold">14.2 ms</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-slate-600">Database Engine</span>
+                    <span class="text-slate-800">SQLite 3 / Master Dataset</span>
+                </div>
+                <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg flex justify-between items-center">
+                    <span class="text-slate-600">Batch Processing Pipeline</span>
+                    <span class="text-slate-800">PySpark HDFS Partitions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Helpdesk Support Modal -->
+    <div id="supportModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 rounded-xl p-6 max-w-lg w-full shadow-lg">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-200">
+                <h3 class="text-sm font-bold text-slate-900">Academic Support & Advisory Inquiries</h3>
+                <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form onsubmit="handleSupportSubmit(event)" class="space-y-3.5 mt-4 text-xs">
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1">Subject</label>
+                    <input type="text" id="supSubject" required placeholder="Brief summary of inquiry" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                </div>
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1">Category</label>
+                    <select id="supCategory" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                        <option>General Academic Inquiry</option>
+                        <option>Data Inconsistency</option>
+                        <option>Retention Model Feedback</option>
+                        <option>Technical Issue</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-slate-700 font-semibold mb-1">Message Description</label>
+                    <textarea id="supMessage" rows="3" required placeholder="Provide details regarding your request..." class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-semibold py-2.5 rounded-lg transition shadow-xs">
+                    Submit Support Ticket
+                </button>
+            </form>
+
+            <div class="mt-5 pt-4 border-t border-gray-200">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-slate-900">My Submitted Tickets</span>
+                    <button onclick="loadTicketHistory()" class="text-xs text-teal-700 hover:text-teal-800 font-medium">Refresh</button>
+                </div>
+                <div id="ticketHistoryList" class="space-y-2 max-h-36 overflow-y-auto custom-scrollbar text-xs">
+                    <div class="text-center py-4 text-slate-500">Login to view submitted ticket history</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Record Editor Modal (Teacher / Administrator) -->
+    <div id="studentEditModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 rounded-xl p-6 max-w-lg w-full shadow-lg">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-200">
+                <h3 class="text-sm font-bold text-slate-900">Edit Student Record</h3>
+                <button onclick="closeStudentEditModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="mt-3 flex items-center space-x-2">
+                <span id="editStudentChip" class="px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-[11px] font-semibold">--</span>
+                <span id="editCourseChip" class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-semibold">--</span>
+            </div>
+
+            <form onsubmit="handleStudentEdit(event)" class="space-y-3.5 mt-4 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Attendance Rate (%)</label>
+                        <input type="number" step="0.1" id="eAttendance" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Quiz Average (0-100)</label>
+                        <input type="number" step="0.1" id="eQuiz" min="0" max="100" required class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Midterm Score (0-100)</label>
+                        <input type="number" step="0.1" id="eMidterm" min="0" max="100" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Assignment Average (0-100)</label>
+                        <input type="number" step="0.1" id="eAssign" min="0" max="100" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Weekly LMS Logins</label>
+                        <input type="number" id="eLms" min="0" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 font-semibold mb-1">Tardy / Late Instances</label>
+                        <input type="number" id="eTardy" min="0" class="w-full bg-slate-50 border border-gray-300 rounded-lg px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/25 focus:border-teal-600">
+                    </div>
+                </div>
+
+                <div id="editModelResult" class="hidden p-3 bg-teal-50 border border-teal-200 rounded-lg text-teal-800"></div>
+
+                <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-semibold py-2.5 rounded-lg text-xs transition shadow-xs flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-floppy-disk text-xs"></i>
+                    <span>Save & Re-evaluate with Models</span>
+                </button>
+            </form>
+
+            <p class="text-[11px] text-slate-500 mt-3">Saved edits are reviewed immediately by the performance, dropout, and anomaly models and reflected across the dashboard in real time.</p>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 4. JAVASCRIPT: ROBUST, LIGHT-THEMED & DOCUMENTED          -->
+    <!-- ========================================================= -->
+    <script>
+        // State variables
+        let authToken = localStorage.getItem("edupredict_token") || "";
+        let currentUserRole = localStorage.getItem("edupredict_role") || "";
+        let currentUsername = localStorage.getItem("edupredict_username") || "";
+        let currentCourseId = localStorage.getItem("edupredict_course") || "";
+        let studentsDataCache = [];
+        let riskChartInstance = null;
+        let enrollmentChartInstance = null;
+        let gpaChartInstance = null;
+        let studentMetricsChartInstance = null;
+
+        // Role-based tab access matrix (RBAC)
+        const ROLE_ACCESS = {
+            Administrator: ["overview", "students", "predict", "courses"],
+            Teacher: ["overview", "students", "predict"],
+            Analyst: ["overview", "students", "courses"],
+            Student: ["overview"]
+        };
+
+        // Initialize on DOM ready
+        document.addEventListener("DOMContentLoaded", () => {
+            configureLightChartDefaults();
+            initCharts();
+            initWebSocketConnection();
+            bootSequence();
+        });
+
+        // Boot loader: brief startup sequence then route to login or dashboard
+        function bootSequence() {
+            hideAppShell();
+            const bar = document.getElementById("bootBar");
+            const steps = document.querySelectorAll("#bootSteps .boot-step");
+            const status = document.getElementById("bootStatus");
+            const phases = [
+                ["Initializing Analytics Engine", "Spinning up API runtime"],
+                ["Loading Predictive Models", "Random Forest suite ready"],
+                ["Warming Data Pipelines", "HDFS partitions mounted"],
+                ["Securing User Sessions", "RBAC policies applied"]
+            ];
+            setTimeout(() => { if (bar) bar.style.width = "100%"; }, 60);
+            steps.forEach((el, i) => {
+                setTimeout(() => {
+                    el.classList.add("active");
+                    if (status) status.innerText = phases[i][1];
+                }, 250 + i * 320);
+            });
+            setTimeout(() => {
+                const loader = document.getElementById("bootLoader");
+                if (loader) loader.classList.add("done");
+                setTimeout(() => {
+                    if (loader) loader.style.display = "none";
+                    if (authToken && currentUserRole) {
+                        validateStoredSession();
+                    } else {
+                        openLoginModal();
+                        applyRoleAccess();
+                    }
+                }, 480);
+            }, 250 + steps.length * 320);
+        }
+
+        async function validateStoredSession() {
+            try {
+                const res = await fetch("/api/auth/me", {
+                    headers: { Authorization: `Bearer ${authToken}` }
+                });
+                if (res.ok) {
+                    onLoginSuccess();
+                } else {
+                    clearSession();
+                    openLoginModal();
+                    applyRoleAccess();
+                }
+            } catch (e) {
+                clearSession();
+                openLoginModal();
+                applyRoleAccess();
+            }
+        }
+
+        function clearSession() {
+            authToken = "";
+            currentUserRole = "";
+            currentUsername = "";
+            currentCourseId = "";
+            localStorage.removeItem("edupredict_token");
+            localStorage.removeItem("edupredict_role");
+            localStorage.removeItem("edupredict_username");
+            localStorage.removeItem("edupredict_course");
+            document.getElementById("headerUser").innerText = "Guest";
+            document.getElementById("headerRole").innerText = "Not logged in";
+        }
+
+        // ---------------------------------------------------------
+        // A. Navigation & Tab Switching
+        // ---------------------------------------------------------
+        function switchTab(tabId) {
+            const allowed = ROLE_ACCESS[currentUserRole] || [];
+            if (!allowed.includes(tabId)) return;
+
+            const tabs = ['overview', 'students', 'predict', 'courses'];
+            tabs.forEach(t => {
+                const viewEl = document.getElementById(`view-${t}`);
+                const navEl = document.getElementById(`nav-${t}`);
+                if (viewEl) viewEl.classList.add('hidden');
+                if (navEl) navEl.classList.remove('active');
+            });
+
+            const targetView = document.getElementById(`view-${tabId}`);
+            const targetNav = document.getElementById(`nav-${tabId}`);
+            if (targetView) {
+                targetView.classList.remove('hidden', 'tab-enter');
+                void targetView.offsetWidth;
+                targetView.classList.add('tab-enter');
+            }
+            if (targetNav) targetNav.classList.add('active');
+        }
+
+        // Modal & screen controls
+        function hideAppShell() {
+            const appHeader = document.querySelector("header");
+            const appMain = document.querySelector("main");
+            if (appHeader) appHeader.classList.add("hidden");
+            if (appMain) appMain.classList.add("hidden");
+        }
+        function showAppShell() {
+            document.getElementById("loginView").classList.add("hidden");
+            const appHeader = document.querySelector("header");
+            const appMain = document.querySelector("main");
+            if (appHeader) appHeader.classList.remove("hidden");
+            if (appMain) appMain.classList.remove("hidden");
+        }
+        function openLoginModal() {
+            document.getElementById("loginView").classList.remove("hidden");
+            hideAppShell();
+            document.getElementById("loginError").classList.add("hidden");
+            const userField = document.getElementById("loginUsername");
+            if (userField && !userField.value) userField.value = currentUsername;
+            const btn = document.getElementById("loginSubmitBtn");
+            if (btn) btn.disabled = false;
+            const txt = document.getElementById("loginBtnText");
+            if (txt) txt.innerText = "Sign In";
+            const sp = document.getElementById("loginBtnSpinner");
+            if (sp) sp.classList.add("hidden");
+        }
+        function closeLoginModal() {
+            showAppShell();
+        }
+        function openSystemModal() { document.getElementById("systemModal").classList.remove("hidden"); }
+        function closeSystemModal() { document.getElementById("systemModal").classList.add("hidden"); }
+        function openSupportModal() { document.getElementById("supportModal").classList.remove("hidden"); }
+        function closeSupportModal() { document.getElementById("supportModal").classList.add("hidden"); }
+
+        // ---------------------------------------------------------
+        // B. Chart.js Global Light Theme Setup
+        // ---------------------------------------------------------
+        function configureLightChartDefaults() {
+            Chart.defaults.color = '#57534e';
+            Chart.defaults.font.family = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            Chart.defaults.borderColor = '#e7e5e4';
+            Chart.defaults.plugins.tooltip.backgroundColor = '#ffffff';
+            Chart.defaults.plugins.tooltip.titleColor = '#0f172a';
+            Chart.defaults.plugins.tooltip.bodyColor = '#334155';
+            Chart.defaults.plugins.tooltip.borderColor = '#cbd5e1';
+            Chart.defaults.plugins.tooltip.borderWidth = 1;
+            Chart.defaults.plugins.tooltip.padding = 10;
+            Chart.defaults.plugins.legend.labels.boxWidth = 12;
+            Chart.defaults.plugins.legend.labels.usePointStyle = true;
+        }
+
+        function initCharts() {
+            // 1. Risk Distribution (Flat Solid Colors)
+            const ctxRisk = document.getElementById("dropoutRiskChart").getContext("2d");
+            riskChartInstance = new Chart(ctxRisk, {
+                type: "doughnut",
+                data: {
+                    labels: ["Low Risk", "Medium Risk", "High Risk"],
+                    datasets: [{
+                        data: [52.6, 28.5, 18.9],
+                        backgroundColor: ["#10b981", "#f59e0b", "#ef4444"],
+                        borderColor: "#ffffff",
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: "68%",
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#475569', font: { size: 11, weight: '500' } } }
+                    }
+                }
+            });
+
+            // 2. Course Enrollments (Solid Royal Blue)
+            const ctxEnroll = document.getElementById("courseEnrollmentChart").getContext("2d");
+            enrollmentChartInstance = new Chart(ctxEnroll, {
+                type: "bar",
+                data: {
+                    labels: ["CS101", "DS201", "AI301", "DB401", "SE501"],
+                    datasets: [{
+                        label: "Enrolled Students",
+                        data: [1240, 980, 1150, 890, 740],
+                        backgroundColor: "#0d9488",
+                        borderRadius: 4,
+                        maxBarThickness: 32
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#475569', font: { size: 11 } } },
+                        y: { grid: { color: '#e2e8f0' }, ticks: { color: '#475569', font: { size: 11 } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // 3. GPA by Department (Flat Emerald Line)
+            const ctxGpa = document.getElementById("courseGpaChart").getContext("2d");
+            gpaChartInstance = new Chart(ctxGpa, {
+                type: "line",
+                data: {
+                    labels: ["CS101", "DS201", "AI301", "DB401", "SE501"],
+                    datasets: [{
+                        label: "Average GPA",
+                        data: [3.18, 3.10, 3.25, 2.95, 3.05],
+                        borderColor: "#b45309",
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointBackgroundColor: "#b45309",
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#475569', font: { size: 11 } } },
+                        y: { min: 2.0, max: 4.0, grid: { color: '#e2e8f0' }, ticks: { color: '#475569', font: { size: 11 } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // 4. Student Personal Metrics Radar
+            const ctxStudent = document.getElementById("studentMetricsChart").getContext("2d");
+            studentMetricsChartInstance = new Chart(ctxStudent, {
+                type: "bar",
+                data: {
+                    labels: ["Attendance", "Quiz Avg", "Midterm", "Assignments", "Engagement"],
+                    datasets: [{
+                        label: "Score /100",
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: ["#0d9488", "#14b8a6", "#f59e0b", "#6366f1", "#f43f5e"],
+                        borderRadius: 5,
+                        maxBarThickness: 42
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#475569', font: { size: 11 } } },
+                        y: { min: 0, max: 100, grid: { color: '#e2e8f0' }, ticks: { color: '#475569', font: { size: 11 } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // ---------------------------------------------------------
+        // C. Real-Time WebSocket Alerts
+        // ---------------------------------------------------------
+        function initWebSocketConnection() {
+            const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+            const wsUrl = `${proto}//${window.location.host}/ws/alerts`;
+            const dot = document.getElementById("wsDot");
+            const text = document.getElementById("wsText");
+
+            try {
+                const ws = new WebSocket(wsUrl);
+
+                ws.onopen = () => {
+                    dot.className = "w-2 h-2 rounded-full bg-emerald-500 inline-block";
+                    text.innerText = "Live Feed Active";
+                };
+
+                ws.onmessage = (evt) => {
+                    if (evt.data.startsWith("PONG")) return;
+                    try {
+                        const alertData = JSON.parse(evt.data);
+                        if (alertData.type === "RECORD_UPDATED") {
+                            if (currentUserRole === "Student" && alertData.student_id === currentUsername) {
+                                refreshData();
+                            } else if (currentUserRole !== "Student") {
+                                refreshData();
+                                loadStudentDirectory();
+                            }
+                            return;
+                        }
+                        appendAlertToList(alertData);
+                    } catch (err) {}
+                };
+
+                ws.onclose = () => {
+                    dot.className = "w-2 h-2 rounded-full bg-slate-400 inline-block";
+                    text.innerText = "Reconnecting...";
+                    setTimeout(initWebSocketConnection, 3000);
+                };
+
+                ws.onerror = () => {
+                    dot.className = "w-2 h-2 rounded-full bg-rose-500 inline-block";
+                    text.innerText = "Offline";
+                };
+            } catch (e) {
+                dot.className = "w-2 h-2 rounded-full bg-slate-400 inline-block";
+                text.innerText = "Offline";
+            }
+        }
+
+        function appendAlertToList(alertData) {
+            const tbody = document.getElementById("alertsListBody");
+            if (!tbody) return;
+
+            const isHighRisk = alertData.risk === "High";
+            const badgeClass = isHighRisk 
+                ? "bg-amber-50 text-amber-800 border border-amber-200" 
+                : "bg-rose-50 text-rose-800 border border-rose-200";
+            const badgeText = isHighRisk ? "High Risk" : "Outlier";
+
+            const row = document.createElement("tr");
+            row.className = "alert-enter even:bg-slate-50/70 hover:bg-teal-50/40 transition";
+            row.innerHTML = `
+                <td class="py-3 px-4">
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${badgeClass}">${badgeText}</span>
+                </td>
+                <td class="py-3 px-4 font-semibold text-slate-900">${alertData.student_id}</td>
+                <td class="py-3 px-4 text-slate-600">Predicted GPA: ${alertData.predicted_gpa} &bull; Alert generated by predictive retention model</td>
+                <td class="py-3 px-4 text-slate-500 text-right">${alertData.timestamp || 'Just now'}</td>
+            `;
+
+            tbody.prepend(row);
+        }
+
+        function clearAlertsLog() {
+            document.getElementById("alertsListBody").innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center py-8 text-slate-500">No active alerts recorded. Monitoring active stream...</td>
+                </tr>
+            `;
+            document.getElementById("alertsCountBadge").innerText = "0 alerts recorded";
+        }
+
+        // ---------------------------------------------------------
+        // D. REST API: Authentication & Role Access Control (RBAC)
+        // ---------------------------------------------------------
+        async function loginAs(username) {
+            const password = document.getElementById("loginPassword").value || "password123";
+            document.getElementById("loginError").classList.add("hidden");
+            setLoginLoading(true);
+            try {
+                const formData = new FormData();
+                formData.append("username", username);
+                formData.append("password", password);
+
+                const res = await fetch("/api/auth/token", { method: "POST", body: formData });
+                if (!res.ok) {
+                    setLoginLoading(false);
+                    document.getElementById("loginError").classList.remove("hidden");
+                    return;
+                }
+                const data = await res.json();
+                setLoginLoading(false);
+
+                authToken = data.access_token;
+                currentUserRole = data.role;
+                currentUsername = data.username;
+                currentCourseId = data.course_id || "";
+                localStorage.setItem("edupredict_token", authToken);
+                localStorage.setItem("edupredict_role", currentUserRole);
+                localStorage.setItem("edupredict_username", currentUsername);
+                localStorage.setItem("edupredict_course", currentCourseId);
+                onLoginSuccess();
+            } catch (err) {
+                document.getElementById("loginError").classList.remove("hidden");
+            }
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            loginAs(document.getElementById("loginUsername").value);
+        }
+
+        function quickLogin(username) {
+            document.getElementById("loginUsername").value = username;
+            const fixedPass = ["admin", "analyst_john", "student_alice"].includes(username);
+            document.getElementById("loginPassword").value = fixedPass ? "password123" : username;
+            loginAs(username);
+        }
+
+        function handleAuthAction() {
+            if (authToken) {
+                handleLogout();
+            } else {
+                openLoginModal();
+            }
+        }
+
+        function setLoginLoading(on) {
+            const btn = document.getElementById("loginSubmitBtn");
+            if (btn) btn.disabled = on;
+            const txt = document.getElementById("loginBtnText");
+            if (txt) txt.innerText = on ? "Authenticating..." : "Sign In";
+            const sp = document.getElementById("loginBtnSpinner");
+            if (sp) sp.classList.toggle("hidden", !on);
+        }
+
+        function onLoginSuccess() {
+            closeLoginModal();
+            document.getElementById("headerUser").innerText = currentUsername;
+            document.getElementById("headerRole").innerText = currentUserRole + (currentCourseId ? " · " + currentCourseId : "");
+            applyRoleAccess();
+            loadStudentDirectory();
+            refreshData();
+        }
+
+        function handleLogout() {
+            clearSession();
+            document.getElementById("authButton").innerText = "Login";
+            openLoginModal();
+        }
+
+        function applyRoleAccess() {
+            const allowed = ROLE_ACCESS[currentUserRole] || [];
+            ["overview", "students", "predict", "courses"].forEach(t => {
+                const nav = document.getElementById(`nav-${t}`);
+                if (nav) nav.style.display = allowed.includes(t) ? "inline-flex" : "none";
+                const mnav = document.getElementById(`mnav-${t}`);
+                if (mnav) mnav.style.display = allowed.includes(t) ? "" : "none";
+            });
+
+            document.getElementById("authButton").innerText = authToken ? "Logout" : "Login";
+
+            const sysBtn = document.querySelector('[title="System Diagnostics"]');
+            if (sysBtn) sysBtn.style.display = currentUserRole === "Administrator" ? "" : "none";
+
+            const isStudent = currentUserRole === "Student";
+            const evalBtn = document.getElementById("overviewEvaluateBtn");
+            if (evalBtn) evalBtn.style.display = isStudent ? "none" : "";
+
+            const ovTitle = document.getElementById("overviewTitle");
+            const ovSub = document.getElementById("overviewSub");
+            if (ovTitle) ovTitle.innerText = isStudent ? "My Academic Profile" : "Institutional Retention Dashboard";
+            if (ovSub) ovSub.innerText = isStudent
+                ? "Your complete academic standing, predictive results and engagement metrics in one screen."
+                : "Real-time summary of student enrollment, performance indicators, and attrition risk.";
+
+            const appNav = document.getElementById("appNav");
+            const mobileNav = document.getElementById("mobileNav");
+            if (appNav) appNav.style.display = isStudent ? "none" : "";
+            if (mobileNav) mobileNav.style.display = isStudent ? "none" : "";
+
+            const actionHead = document.getElementById("actionColHead");
+            if (actionHead) actionHead.style.display = (currentUserRole === "Administrator" || currentUserRole === "Teacher") ? "" : "none";
+
+            const kpis = document.getElementById("institutionKpis");
+            const charts = document.getElementById("institutionCharts");
+            const alerts = document.getElementById("institutionAlerts");
+            const stuCard = document.getElementById("studentPersonalCard");
+            if (kpis) kpis.style.display = isStudent ? "none" : "";
+            if (charts) charts.style.display = isStudent ? "none" : "";
+            if (alerts) alerts.style.display = isStudent ? "none" : "";
+            if (stuCard) stuCard.classList.toggle("hidden", !isStudent);
+
+            switchTab(allowed[0] || "overview");
+        }
+
+        // ---------------------------------------------------------
+        // E. REST API: Summary KPIs & Course Analytics
+        // ---------------------------------------------------------
+        async function refreshData() {
+            const headers = {};
+            if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+            if (currentUserRole === "Student") {
+                try {
+                    const res = await fetch("/api/students/me", { headers });
+                    if (res.ok) {
+                        const s = await res.json();
+                        renderStudentProfile(s);
+                    }
+                } catch (e) {}
+                return;
+            }
+
+            try {
+                const res = await fetch("/api/analytics/summary", { headers });
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById("kpiTotalStudents").innerText = (data.total_students || 0).toLocaleString();
+                    document.getElementById("kpiAvgGpa").innerText = data.avg_gpa || "0.00";
+                    document.getElementById("kpiHighRisk").innerText = `${data.high_risk_percentage || 0}%`;
+                    document.getElementById("kpiHighRiskCount").innerText = `${(data.high_risk_count || 0).toLocaleString()} students flagged for review`;
+                    document.getElementById("kpiAnomalies").innerText = (data.anomaly_count || 0).toLocaleString();
+
+                    const accEl = document.getElementById("classificationAccuracy");
+                    if (accEl) accEl.innerText = data.dropout_accuracy ? `${data.dropout_accuracy}%` : "--";
+
+                    if (riskChartInstance && data.total_students > 0) {
+                        riskChartInstance.data.datasets[0].data = [data.low_risk_count || 0, data.medium_risk_count || 0, data.high_risk_count || 0];
+                        riskChartInstance.update();
+                    }
+
+                    const courseStats = data.course_stats || {};
+                    const courseIds = Object.keys(courseStats);
+                    if (courseIds.length > 0) {
+                        if (enrollmentChartInstance) {
+                            enrollmentChartInstance.data.labels = courseIds;
+                            enrollmentChartInstance.data.datasets[0].data = courseIds.map(id => courseStats[id].enrolled);
+                            enrollmentChartInstance.update();
+                        }
+                        if (gpaChartInstance) {
+                            gpaChartInstance.data.labels = courseIds;
+                            gpaChartInstance.data.datasets[0].data = courseIds.map(id => courseStats[id].avg_gpa);
+                            gpaChartInstance.update();
+                        }
+                    }
+                }
+            } catch (e) {}
+
+            if (currentUserRole === "Administrator" || currentUserRole === "Analyst") {
+                try {
+                    const res = await fetch("/api/analytics/course-demand", { headers });
+                    if (res.ok) {
+                        const data = await res.json();
+                        const forecasts = data.course_demand || {};
+                        const courseIds = Object.keys(forecasts);
+                        if (courseIds.length > 0) {
+                            renderCourseCards(forecasts, courseIds);
+                        }
+                    }
+                } catch (e) {}
+            }
+        }
+
+        function renderStudentProfile(s) {
+            document.getElementById("chipStudentId").innerText = s.student_id || "--";
+            document.getElementById("chipCourse").innerText = s.course_id || "--";
+            document.getElementById("chipTerm").innerText = s.term || "--";
+
+            document.getElementById("myGpa").innerText = `${s.gpa || 0.00} / 4.0`;
+            document.getElementById("myAttendance").innerText = `${s.attendance_rate || 0}%`;
+            document.getElementById("myAttendanceDetail").innerText = `${s.classes_attended || 0} of ${s.total_classes || 0} classes attended`;
+            document.getElementById("myQuiz").innerText = `${s.avg_quiz_score || 0}%`;
+            document.getElementById("myLms").innerText = `${s.lms_logins_per_week || 0}/wk`;
+            document.getElementById("myLmsDetail").innerText = `${s.video_watch_hours || 0} video hrs · ${s.forum_posts || 0} forum posts`;
+
+            const risk = s.dropout_risk || "Low";
+            const riskEl = document.getElementById("myRisk");
+            riskEl.innerText = `${risk} Risk`;
+            riskEl.className = risk === "High" ? "text-2xl font-bold text-rose-600 mt-1" : (risk === "Medium" ? "text-2xl font-bold text-amber-600 mt-1" : "text-2xl font-bold text-emerald-600 mt-1");
+
+            const anom = !!s.is_anomaly;
+            const anomEl = document.getElementById("myAnomaly");
+            anomEl.innerText = anom ? "Flagged Outlier" : "Normal";
+            anomEl.className = anom ? "text-base font-semibold text-rose-600 mt-1" : "text-base font-semibold text-emerald-600 mt-1";
+
+            document.getElementById("predGpa").innerText = `${s.predicted_gpa != null ? s.predicted_gpa : s.gpa || 0.00} / 4.0`;
+            const predRisk = s.predicted_risk || s.dropout_risk || "Low";
+            const predRiskEl = document.getElementById("predRisk");
+            predRiskEl.innerText = `${predRisk} Risk`;
+            predRiskEl.className = predRisk === "High" ? "text-lg font-bold text-rose-600 mt-1" : (predRisk === "Medium" ? "text-lg font-bold text-amber-600 mt-1" : "text-lg font-bold text-emerald-600 mt-1");
+
+            const predAnom = s.predicted_anomaly != null ? !!s.predicted_anomaly : anom;
+            const predAnomEl = document.getElementById("predAnom");
+            predAnomEl.innerText = predAnom ? "Flagged Outlier" : "Normal Academic Profile";
+            predAnomEl.className = predAnom ? "text-sm font-semibold text-rose-600 mt-1" : "text-sm font-semibold text-emerald-600 mt-1";
+
+            const conf = document.getElementById("predConf");
+            conf.innerText = s.confidence_score != null ? `${Math.round(s.confidence_score * 100)}%` : "--";
+
+            const setDetail = (elId, val) => {
+                const el = document.getElementById(elId);
+                if (el) el.innerText = (val === null || val === undefined) ? "--" : val;
+            };
+            setDetail("dAge", s.age);
+            setDetail("dDist", s.distance_from_campus_km);
+            setDetail("dMidterm", s.midterm_score);
+            setDetail("dAssign", s.assignment_score);
+            setDetail("dFinal", s.final_score);
+            setDetail("dCredits", s.credits);
+            setDetail("dVideo", s.video_watch_hours);
+            setDetail("dForum", s.forum_posts);
+            setDetail("dQuizAtt", s.quiz_attempts);
+            setDetail("dClasses", `${s.classes_attended || 0} / ${s.total_classes || 0}`);
+            setDetail("dTardy", s.tardy_count);
+            setDetail("dEngage", s.engagement_index);
+
+            if (studentMetricsChartInstance) {
+                studentMetricsChartInstance.data.datasets[0].data = [
+                    Math.min(100, Math.round(s.attendance_rate || 0)),
+                    Math.min(100, Math.round(s.avg_quiz_score || 0)),
+                    Math.min(100, Math.round(s.midterm_score || 0)),
+                    Math.min(100, Math.round(s.assignment_score || 0)),
+                    Math.min(100, Math.round(s.engagement_index || 0))
+                ];
+                studentMetricsChartInstance.update();
+            }
+        }
+
+        function renderCourseCards(forecasts, courseIds) {
+            const container = document.getElementById("courseCardsContainer");
+            if (!container) return;
+
+            container.innerHTML = courseIds.map(id => {
+                const fc = forecasts[id];
+                const isGrowing = fc.trend === "Growing";
+                return `
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs flex flex-col justify-between">
+                        <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                            <span class="font-bold text-slate-900 text-sm">${id}</span>
+                            <span class="text-xs px-2.5 py-0.5 rounded-full font-medium ${isGrowing ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600'}">${fc.trend}</span>
+                        </div>
+                        <div class="my-4 space-y-2 text-xs">
+                            <div class="flex justify-between text-slate-600">
+                                <span>Current Enrollment:</span>
+                                <span class="text-slate-900 font-semibold">${(fc.current_enrolled || 0).toLocaleString()} students</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span>Next Term Forecast:</span>
+                                <span class="text-teal-700 font-semibold">${(fc.predicted_next_term || 0).toLocaleString()} seats</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span>Average Track GPA:</span>
+                                <span class="text-slate-900 font-semibold">${fc.avg_gpa}</span>
+                            </div>
+                            <div class="flex justify-between text-slate-600">
+                                <span>Class Attendance Average:</span>
+                                <span class="text-slate-900 font-semibold">${fc.avg_attendance}%</span>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-gray-100 text-xs text-slate-500 flex justify-between">
+                            <span>At-Risk Enrollees:</span>
+                            <span class="text-amber-700 font-semibold">${fc.high_risk_count} students</span>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        // ---------------------------------------------------------
+        // F. REST API: Student Records Roster
+        // ---------------------------------------------------------
+        async function loadStudentDirectory() {
+            try {
+                const headers = {};
+                if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+                if (currentUserRole === "Student") {
+                    const res = await fetch("/api/students/me", { headers });
+                    if (res.ok) {
+                        const profile = await res.json();
+                        studentsDataCache = [profile];
+                        renderStudentsTable(studentsDataCache);
+                    } else {
+                        renderDemoStudents();
+                    }
+                    return;
+                }
+
+                const rosterLimit = currentUserRole === "Teacher" ? 1000 : 50;
+                const res = await fetch(`/api/students?limit=${rosterLimit}`, { headers });
+                if (res.status === 401 || res.status === 403) {
+                    renderDemoStudents();
+                    return;
+                }
+                const data = await res.json();
+                studentsDataCache = data.students || [];
+                renderStudentsTable(studentsDataCache);
+            } catch (e) {
+                renderDemoStudents();
+            }
+        }
+
+        function renderStudentsTable(students) {
+            const tbody = document.getElementById("studentTableBody");
+            if (!tbody) return;
+            const canEdit = currentUserRole === "Administrator" || currentUserRole === "Teacher";
+
+            if (students.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" class="text-center py-10 text-slate-500">No matching student records found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = students.map(s => {
+                const riskBadge = s.dropout_risk === "High" ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-800 border border-rose-200">High</span>` :
+                                 (s.dropout_risk === "Medium" ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">Medium</span>` :
+                                 `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">Low</span>`);
+
+                const anomBadge = s.is_anomaly ? `<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-rose-100 text-rose-700">Flagged</span>` :
+                                  `<span class="text-slate-400">-</span>`;
+
+                const actionCell = canEdit
+                    ? `<button onclick="openStudentEditModal('${s.student_id}')" class="px-2.5 py-1 rounded-lg bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-800 text-[11px] font-semibold transition cursor-pointer">Edit</button>`
+                    : `<span class="text-slate-300">-</span>`;
+
+                return `
+                    <tr class="even:bg-slate-50/70 hover:bg-teal-50/40 transition">
+                        <td class="py-3 px-4 font-semibold text-slate-900">${s.student_id}</td>
+                        <td class="py-3 px-4 text-teal-700 font-medium">${s.course_id || 'CS101'}</td>
+                        <td class="py-3 px-4 text-slate-500">${s.term || 'Spring 2026'}</td>
+                        <td class="py-3 px-4 text-right">${s.attendance_rate}%</td>
+                        <td class="py-3 px-4 text-right">${s.lms_logins_per_week}/wk</td>
+                        <td class="py-3 px-4 text-right">${s.avg_quiz_score}%</td>
+                        <td class="py-3 px-4 text-right font-bold text-slate-900">${s.gpa}</td>
+                        <td class="py-3 px-4 text-center">${riskBadge}</td>
+                        <td class="py-3 px-4 text-center">${anomBadge}</td>
+                        <td class="py-3 px-4 text-center">${actionCell}</td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        function filterStudentsTable() {
+            const query = (document.getElementById("studentSearchInput").value || "").toUpperCase();
+            const riskFilter = document.getElementById("studentRiskFilter").value;
+
+            const filtered = studentsDataCache.filter(s => {
+                const matchesText = (s.student_id || "").toUpperCase().includes(query) || (s.course_id || "").toUpperCase().includes(query);
+                const matchesRisk = riskFilter === "ALL" || s.dropout_risk === riskFilter;
+                return matchesText && matchesRisk;
+            });
+            renderStudentsTable(filtered);
+        }
+
+        function renderDemoStudents() {
+            const demo = [
+                { student_id: "STU10001", course_id: "CS101", term: "Fall 2025", attendance_rate: 88.5, lms_logins_per_week: 14, avg_quiz_score: 82.0, gpa: 3.45, dropout_risk: "Low", is_anomaly: false },
+                { student_id: "STU10002", course_id: "DS201", term: "Spring 2026", attendance_rate: 54.0, lms_logins_per_week: 3, avg_quiz_score: 51.2, gpa: 2.10, dropout_risk: "High", is_anomaly: false },
+                { student_id: "STU10003", course_id: "AI301", term: "Spring 2026", attendance_rate: 92.0, lms_logins_per_week: 16, avg_quiz_score: 38.0, gpa: 2.80, dropout_risk: "Medium", is_anomaly: true }
+            ];
+            renderStudentsTable(demo);
+        }
+
+        // ---------------------------------------------------------
+        // F2. Student Record Editing (Teacher / Administrator)
+        // ---------------------------------------------------------
+        function openStudentEditModal(studentId) {
+            const rec = studentsDataCache.find(s => s.student_id === studentId);
+            if (!rec) {
+                alert("Record not found in the loaded roster.");
+                return;
+            }
+            document.getElementById("editStudentChip").innerText = rec.student_id;
+            document.getElementById("editCourseChip").innerText = rec.course_id || "--";
+            document.getElementById("eAttendance").value = rec.attendance_rate || 0;
+            document.getElementById("eQuiz").value = rec.avg_quiz_score || 0;
+            document.getElementById("eMidterm").value = rec.midterm_score || 0;
+            document.getElementById("eAssign").value = rec.assignment_score || 0;
+            document.getElementById("eLms").value = rec.lms_logins_per_week || 0;
+            document.getElementById("eTardy").value = rec.tardy_count || 0;
+            document.getElementById("editModelResult").classList.add("hidden");
+            document.getElementById("studentEditModal").classList.remove("hidden");
+        }
+
+        function closeStudentEditModal() {
+            document.getElementById("studentEditModal").classList.add("hidden");
+        }
+
+        async function handleStudentEdit(e) {
+            e.preventDefault();
+            const sid = document.getElementById("editStudentChip").innerText;
+            const midVal = document.getElementById("eMidterm").value;
+            const asgVal = document.getElementById("eAssign").value;
+            const lmsVal = document.getElementById("eLms").value;
+            const tarVal = document.getElementById("eTardy").value;
+            const payload = {
+                attendance_rate: parseFloat(document.getElementById("eAttendance").value),
+                avg_quiz_score: parseFloat(document.getElementById("eQuiz").value)
+            };
+            if (midVal !== "") payload.midterm_score = parseFloat(midVal);
+            if (asgVal !== "") payload.assignment_score = parseFloat(asgVal);
+            if (lmsVal !== "") payload.lms_logins_per_week = parseInt(lmsVal, 10);
+            if (tarVal !== "") payload.tardy_count = parseInt(tarVal, 10);
+
+            try {
+                const headers = { "Content-Type": "application/json" };
+                if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+                const res = await fetch(`/api/students/${sid}`, {
+                    method: "PUT",
+                    headers: headers,
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    alert(data.detail || "Edit failed. Check your permissions.");
+                    return;
+                }
+                const resultEl = document.getElementById("editModelResult");
+                resultEl.innerHTML = `Models re-read <b>${sid}</b> &rarr; Predicted GPA <b>${data.predicted_gpa}</b> &middot; Risk <b>${data.dropout_risk}</b> &middot; Anomaly ${data.is_anomaly ? "<b>Yes</b>" : "No"} &middot; Confidence ${Math.round(data.confidence_score * 100)}%`;
+                resultEl.classList.remove("hidden");
+
+                const idx = studentsDataCache.findIndex(s => s.student_id === sid);
+                if (idx > -1) {
+                    studentsDataCache[idx] = { ...studentsDataCache[idx], ...data.record, gpa: data.predicted_gpa, dropout_risk: data.dropout_risk, is_anomaly: data.is_anomaly };
+                }
+                renderStudentsTable(studentsDataCache);
+                refreshData();
+                setTimeout(() => closeStudentEditModal(), 1800);
+            } catch (err) {
+                alert("Error saving record. Verify the backend connection.");
+            }
+        }
+
+        // ---------------------------------------------------------
+        // G. REST API: Machine Learning Inference
+        // ---------------------------------------------------------
+        async function handlePrediction(e) {
+            e.preventDefault();
+            const payload = {
+                student_id: document.getElementById("pStudentId").value,
+                age: parseInt(document.getElementById("pAge").value),
+                distance_from_campus_km: parseFloat(document.getElementById("pDist").value),
+                midterm_score: parseFloat(document.getElementById("pMidterm").value),
+                assignment_score: parseFloat(document.getElementById("pAssign").value),
+                attendance_rate: parseFloat(document.getElementById("pAttendance").value),
+                lms_logins_per_week: parseInt(document.getElementById("pLms").value),
+                avg_quiz_score: parseFloat(document.getElementById("pQuiz").value),
+                tardy_count: parseInt(document.getElementById("pTardy").value)
+            };
+
+            try {
+                const headers = { "Content-Type": "application/json" };
+                if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+                const res = await fetch("/api/predict/student", {
+                    method: "POST",
+                    headers: headers,
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.status === 401) {
+                    alert("Please login to run a risk evaluation.");
+                    openLoginModal();
+                    return;
+                }
+                if (res.status === 403) {
+                    alert("Your role does not have permission to run student risk evaluations.");
+                    return;
+                }
+
+                const data = await res.json();
+                document.getElementById("emptyResultPlaceholder").classList.add("hidden");
+                document.getElementById("predictionResultCard").classList.remove("hidden");
+
+                document.getElementById("outGpa").innerText = `${data.predicted_gpa} / 4.0`;
+
+                const riskEl = document.getElementById("outRisk");
+                riskEl.innerText = `${data.dropout_risk} Risk`;
+                riskEl.className = data.dropout_risk === "High" ? "text-lg font-bold text-rose-600 mt-1" :
+                                  (data.dropout_risk === "Medium" ? "text-lg font-bold text-amber-600 mt-1" : "text-lg font-bold text-emerald-600 mt-1");
+
+                const anomEl = document.getElementById("outAnomaly");
+                anomEl.innerText = data.is_anomaly ? "Flagged Outlier" : "Normal Academic Profile";
+                anomEl.className = data.is_anomaly ? "text-sm font-semibold text-rose-600 mt-1" : "text-sm font-semibold text-emerald-600 mt-1";
+
+                document.getElementById("outConfidence").innerText = `${Math.round(data.confidence_score * 100)}%`;
+            } catch (err) {
+                alert("Inference execution complete.");
+            }
+        }
+
+        // ---------------------------------------------------------
+        // H. REST API: Helpdesk Support Tickets
+        // ---------------------------------------------------------
+        async function handleSupportSubmit(e) {
+            e.preventDefault();
+            const payload = {
+                subject: document.getElementById("supSubject").value,
+                category: document.getElementById("supCategory").value,
+                message: document.getElementById("supMessage").value
+            };
+
+            try {
+                const headers = { "Content-Type": "application/json" };
+                if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+                const res = await fetch("/api/support/ticket", {
+                    method: "POST",
+                    headers: headers,
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.status === 401 || res.status === 403) {
+                    alert("Please login first to submit a request.");
+                    return;
+                }
+
+                const data = await res.json();
+                alert(`Support request #${data.id} submitted successfully.`);
+                document.getElementById("supSubject").value = "";
+                document.getElementById("supMessage").value = "";
+                loadTicketHistory();
+                closeSupportModal();
+            } catch (err) {
+                alert("Error submitting ticket. Verify the backend connection.");
+            }
+        }
+
+        async function loadTicketHistory() {
+            const container = document.getElementById("ticketHistoryList");
+            if (!container) return;
+
+            try {
+                const headers = {};
+                if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+                const res = await fetch("/api/support/tickets", { headers });
+                if (!res.ok) {
+                    container.innerHTML = '<div class="text-xs text-slate-500 text-center py-4">Login to view submitted ticket history</div>';
+                    return;
+                }
+
+                const tickets = await res.json();
+                if (tickets.length === 0) {
+                    container.innerHTML = '<div class="text-xs text-slate-500 text-center py-4">No submitted tickets found</div>';
+                    return;
+                }
+
+                container.innerHTML = tickets.map(t => `
+                    <div class="p-3 bg-slate-50 border border-gray-200 rounded-lg">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-semibold text-slate-900">#${t.id} - ${t.subject}</span>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full font-medium ${t.status === 'Open' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${t.status}</span>
+                        </div>
+                        <div class="text-xs text-slate-500 mt-1">${t.category} &bull; ${t.created_at || 'Just now'}</div>
+                    </div>
+                `).join("");
+            } catch (e) {
+                container.innerHTML = '<div class="text-xs text-slate-500 text-center py-4">Could not retrieve ticket history</div>';
+            }
+        }
+    </script>
+</body>
+</html>

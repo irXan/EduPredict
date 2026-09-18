@@ -1,0 +1,161 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10051,DB401,Spring 2025,3,40.0,35.6,38.7,1.55,4,24,Female,Medium,1.4,High-Speed,Bachelors,4,25.9,3,10,63.4,40,19,47.1,5,42.23,High,False
+STU10084,DS201,Spring 2025,3,51.9,60.7,54.6,2.18,4,25,Male,Medium,2.3,High-Speed,Bachelors,8,16.1,3,6,73.3,45,21,46.1,4,49.71,High,False
+STU10126,CS101,Spring 2025,3,43.3,45.0,43.8,1.75,3,18,Female,High,4.2,Moderate,Bachelors,10,11.6,4,7,56.9,45,27,60.0,2,56.38,High,True
+STU10137,CS101,Spring 2025,3,47.0,46.9,47.0,1.88,3,23,Female,Medium,15.8,High-Speed,High School,8,19.7,2,4,66.2,40,25,62.9,2,56.69,High,False
+STU10204,SE501,Spring 2025,3,45.4,53.4,47.8,1.91,3,23,Female,Low,1.4,High-Speed,Bachelors,11,9.4,2,2,56.3,45,30,66.1,7,60.81,High,False
+STU10226,DS201,Spring 2025,3,46.6,37.9,44.0,1.76,3,25,Female,Low,15.8,High-Speed,High School,12,14.8,2,10,62.6,45,25,56.5,2,58.77,High,True
+STU10232,DS201,Spring 2025,3,57.2,59.5,57.9,2.32,3,22,Female,Low,9.4,High-Speed,Bachelors,6,1.0,7,2,85.5,45,23,52.0,1,52.1,High,False
+STU10237,AI301,Spring 2025,3,55.0,48.7,53.1,2.12,4,20,Male,Low,8.4,High-Speed,High School,5,14.2,5,8,85.2,40,20,50.3,4,49.69,High,False
+STU10242,AI301,Spring 2025,3,50.2,49.9,50.1,2.0,3,25,Female,Medium,6.4,Moderate,Bachelors,8,7.6,3,4,65.3,45,25,54.6,1,52.36,High,False
+STU10248,DB401,Spring 2025,3,45.9,40.0,44.1,1.76,4,18,Female,Medium,1.8,High-Speed,High School,13,12.6,5,4,47.6,50,37,74.3,3,66.17,High,True
+STU10250,SE501,Spring 2025,3,44.2,41.9,43.5,1.74,3,22,Male,Low,0.3,Moderate,Bachelors,11,10.7,5,10,60.3,45,32,71.2,0,64.16,High,True
+STU10265,DS201,Spring 2025,3,52.7,65.5,56.5,2.26,4,19,Female,Medium,7.5,High-Speed,Bachelors,9,21.6,3,10,75.7,40,18,45.3,4,51.29,High,False
+STU10292,AI301,Spring 2025,3,40.6,45.4,42.0,1.68,3,22,Female,Medium,14.9,High-Speed,Bachelors,9,16.5,2,8,67.8,50,22,44.5,1,49.31,High,False
+STU10324,AI301,Spring 2025,3,61.5,58.7,60.7,2.43,4,22,Female,Medium,25.7,High-Speed,High School,8,11.3,4,12,74.1,45,28,62.7,3,58.17,High,False
+STU10344,CS101,Spring 2025,3,68.9,70.0,69.2,2.77,3,22,Male,High,5.7,Limited,Masters,9,8.1,5,5,65.6,50,29,58.5,2,55.87,High,False
+STU10373,AI301,Spring 2025,3,42.3,39.2,41.4,1.66,4,19,Female,High,0.7,High-Speed,Bachelors,8,13.7,2,2,74.9,45,16,34.6,4,44.28,High,False
+STU10386,AI301,Spring 2025,3,41.4,44.2,42.2,1.69,4,25,Male,Low,3.9,High-Speed,Bachelors,6,22.4,1,11,76.2,40,13,33.7,3,41.09,High,False
+STU10404,DS201,Spring 2025,3,69.3,71.1,69.9,2.8,3,19,Male,Low,18.9,High-Speed,High School,9,21.2,4,9,87.0,45,29,63.4,2,62.6,High,False
+STU10443,AI301,Spring 2025,3,50.4,49.0,50.0,2.0,4,18,Male,Low,13.4,High-Speed,Bachelors,6,13.5,8,5,42.7,45,23,51.6,4,43.34,High,False
+STU10455,AI301,Spring 2025,3,34.6,31.2,33.6,1.34,4,23,Female,Medium,11.7,Moderate,Bachelors,13,21.5,2,14,66.4,50,27,54.7,2,60.13,High,True
+STU10467,SE501,Spring 2025,3,60.3,58.7,59.8,2.39,4,21,Female,Low,12.5,High-Speed,Bachelors,7,17.6,6,8,73.5,40,25,62.8,1,56.6,High,False
+STU10481,DB401,Spring 2025,3,47.1,54.4,49.3,1.97,3,25,Female,Low,6.8,High-Speed,Masters,7,15.7,2,11,86.0,45,23,50.8,5,53.1,High,False
+STU10510,AI301,Spring 2025,3,59.7,49.6,56.7,2.27,3,24,Female,High,7.9,Moderate,Doctorate,10,11.0,4,7,62.6,50,32,64.1,3,59.57,High,False
+STU10541,DS201,Spring 2025,3,35.2,30.9,33.9,1.36,4,23,Female,Low,9.7,Moderate,High School,10,8.0,3,14,44.3,40,21,53.4,3,50.56,High,True
+STU10567,CS101,Spring 2025,3,42.1,40.2,41.5,1.66,4,19,Male,Medium,7.8,Moderate,High School,11,7.9,2,8,70.1,45,24,53.5,3,57.27,High,True
+STU10587,DS201,Spring 2025,3,53.1,55.5,53.8,2.15,4,18,Male,Medium,33.0,High-Speed,Bachelors,7,16.7,0,13,78.5,40,21,52.2,3,52.3,High,False
+STU10615,CS101,Spring 2025,3,68.2,64.2,67.0,2.68,4,24,Female,Low,7.0,High-Speed,High School,11,9.5,7,14,74.4,40,21,53.0,3,57.88,High,False
+STU10660,DB401,Spring 2025,3,51.6,44.7,49.5,1.98,3,24,Male,High,7.3,Moderate,Masters,11,16.6,10,9,78.5,50,35,70.9,6,67.65,High,False
+STU10722,CS101,Spring 2025,3,42.2,44.7,43.0,1.72,3,18,Male,Low,14.6,Moderate,High School,13,23.9,1,2,59.8,40,25,62.6,2,62.76,High,True
+STU10748,DS201,Spring 2025,3,42.2,36.7,40.6,1.62,3,25,Female,High,8.3,High-Speed,Masters,9,15.9,6,11,52.2,45,20,44.0,3,45.94,High,False
+STU10774,DS201,Spring 2025,3,52.2,52.7,52.3,2.09,4,23,Female,Medium,11.8,Moderate,High School,9,21.2,3,11,45.0,40,23,57.4,3,51.2,High,False
+STU10846,CS101,Spring 2025,3,54.9,50.9,53.7,2.15,3,19,Male,High,7.4,Moderate,High School,10,17.2,3,10,76.2,45,23,51.3,6,55.89,High,False
+STU10896,SE501,Spring 2025,3,36.5,41.3,37.9,1.52,3,25,Male,Medium,7.6,High-Speed,Bachelors,7,14.9,3,2,61.4,40,23,58.1,3,51.83,High,False
+STU10964,SE501,Spring 2025,3,51.0,46.9,49.8,1.99,3,19,Male,High,10.2,High-Speed,High School,8,14.2,5,5,64.0,50,21,42.7,3,46.15,High,False
+STU10967,DS201,Spring 2025,3,49.5,50.0,49.6,1.98,4,22,Male,Medium,17.6,High-Speed,High School,10,17.0,4,11,60.5,40,25,63.6,0,58.9,High,False
+STU11028,DB401,Spring 2025,3,59.7,58.3,59.3,2.37,3,20,Male,Medium,7.5,High-Speed,High School,4,1.9,4,14,83.2,50,28,55.6,1,50.44,High,False
+STU11111,DS201,Spring 2025,3,42.7,45.9,43.7,1.75,3,25,Male,High,20.8,High-Speed,Bachelors,9,13.8,2,2,67.9,45,21,46.2,1,50.18,High,False
+STU11121,DS201,Spring 2025,3,54.2,53.4,54.0,2.16,3,24,Female,Low,3.4,Moderate,Bachelors,10,25.0,3,2,52.4,40,23,58.2,6,54.58,High,False
+STU11170,SE501,Spring 2025,3,41.3,37.9,40.3,1.61,4,22,Female,High,1.7,High-Speed,Bachelors,12,13.4,2,9,50.0,40,24,59.5,2,57.75,High,True
+STU11171,DB401,Spring 2025,3,51.6,54.2,52.4,2.1,4,18,Other,Low,0.2,Limited,Bachelors,8,20.4,3,12,53.9,40,21,53.7,7,49.63,High,False
+STU11181,AI301,Spring 2025,3,45.7,46.1,45.8,1.83,3,21,Male,High,18.0,Moderate,Doctorate,6,10.7,4,13,69.9,45,28,62.0,2,53.98,High,False
+STU11204,AI301,Spring 2025,3,45.4,41.6,44.3,1.77,4,23,Male,Low,6.1,High-Speed,Masters,10,11.7,5,10,53.7,40,20,49.8,3,50.64,High,True
+STU11237,CS101,Spring 2025,3,45.6,50.1,46.9,1.88,4,24,Male,Low,16.7,High-Speed,Bachelors,9,23.0,2,8,65.0,40,22,55.9,2,54.45,High,False
+STU11264,AI301,Spring 2025,3,47.1,46.0,46.8,1.87,3,25,Male,Low,14.9,Moderate,High School,11,13.4,5,9,54.8,45,28,62.5,6,58.71,High,False
+STU11303,DS201,Spring 2025,3,53.6,65.8,57.3,2.29,4,19,Female,High,6.1,High-Speed,Bachelors,8,19.8,3,2,82.1,50,29,57.5,1,57.17,High,False
+STU11319,AI301,Spring 2025,3,58.4,54.1,57.1,2.28,4,19,Male,Medium,1.2,High-Speed,Masters,8,19.8,4,5,88.4,40,20,48.8,2,54.08,High,False
+STU11329,DS201,Spring 2025,3,47.8,48.8,48.1,1.92,3,22,Female,Low,6.0,Moderate,Doctorate,6,17.9,2,8,91.4,40,18,46.0,3,50.28,High,False
+STU11333,DS201,Spring 2025,3,45.6,44.0,45.1,1.8,3,19,Other,Medium,47.0,Moderate,High School,15,16.2,5,13,63.5,45,31,70.0,4,70.2,High,False
+STU11401,DS201,Spring 2025,3,34.3,37.4,35.2,1.41,3,18,Male,High,16.0,High-Speed,Masters,7,18.2,5,3,60.9,50,27,54.7,1,50.03,High,False
+STU11429,CS101,Spring 2025,3,39.3,38.0,38.9,1.56,4,22,Female,High,8.5,Moderate,Masters,9,22.0,2,10,48.5,45,29,64.1,3,55.25,High,False
+STU11481,CS101,Spring 2025,3,57.7,48.5,54.9,2.2,3,21,Male,Medium,17.6,Moderate,High School,6,10.9,3,7,67.1,40,25,62.3,3,53.57,High,False
+STU11491,DS201,Spring 2025,3,41.7,47.5,43.5,1.74,3,25,Male,Low,8.5,High-Speed,Bachelors,8,23.3,4,13,64.2,50,31,61.1,2,55.39,High,False
+STU11492,DB401,Spring 2025,3,44.0,49.7,45.7,1.83,3,23,Male,Medium,2.0,Moderate,High School,11,16.1,5,6,71.3,45,22,49.4,3,55.46,High,False
+STU11528,DS201,Spring 2025,3,60.9,67.1,62.8,2.51,4,22,Female,High,0.6,High-Speed,High School,4,15.9,3,11,59.3,45,23,52.1,5,43.91,High,False
+STU11533,CS101,Spring 2025,3,41.5,45.3,42.6,1.7,3,21,Male,High,2.7,High-Speed,Bachelors,8,14.1,3,4,69.5,40,23,57.3,4,54.55,High,False
+STU11556,SE501,Spring 2025,3,49.3,43.4,47.5,1.9,4,21,Female,High,6.4,Moderate,Bachelors,9,13.0,7,8,84.9,45,20,45.4,0,53.18,High,False
+STU11619,DS201,Spring 2025,3,43.5,42.4,43.2,1.73,4,20,Female,High,0.3,Moderate,Bachelors,7,10.6,8,3,79.9,40,20,48.9,2,50.93,High,False
+STU11625,AI301,Spring 2025,3,46.2,38.6,43.9,1.76,3,24,Female,High,12.4,High-Speed,Bachelors,8,6.8,2,5,84.3,50,23,45.8,4,51.76,High,False
+STU11637,CS101,Spring 2025,3,59.4,56.2,58.4,2.34,4,25,Male,Medium,0.6,High-Speed,Bachelors,10,12.1,8,13,79.4,50,22,43.8,1,52.78,High,False
+STU11667,CS101,Spring 2025,3,35.6,30.0,33.9,1.36,3,23,Female,Low,19.4,High-Speed,Bachelors,7,17.7,2,3,56.1,45,20,44.0,2,43.72,High,False
+STU11723,SE501,Spring 2025,3,42.7,33.7,40.0,1.6,4,19,Male,Low,6.9,Limited,Masters,10,4.5,4,7,84.2,40,19,46.7,3,55.19,High,True
+STU11773,SE501,Spring 2025,3,45.5,53.3,47.8,1.91,4,19,Female,Medium,4.2,High-Speed,High School,6,10.8,6,4,65.0,50,28,55.0,2,49.5,High,False
+STU11791,DS201,Spring 2025,3,58.3,49.4,55.6,2.22,4,19,Female,Medium,0.1,Limited,High School,12,15.9,4,7,61.0,40,17,42.3,1,51.35,High,False
+STU11802,DB401,Spring 2025,3,49.5,48.8,49.3,1.97,3,23,Male,High,0.8,Limited,Masters,8,10.2,5,5,65.8,50,28,56.7,3,53.51,High,False
+STU11840,DS201,Spring 2025,3,55.4,65.7,58.5,2.34,3,20,Male,Medium,3.7,Moderate,Bachelors,13,15.2,5,6,80.5,45,24,54.2,1,62.7,High,False
+STU11867,CS101,Spring 2025,3,39.8,46.0,41.7,1.67,4,25,Male,High,13.9,High-Speed,Bachelors,7,12.7,5,9,67.6,50,33,65.9,4,56.97,High,False
+STU11887,AI301,Spring 2025,3,64.3,56.6,62.0,2.48,3,18,Male,Low,9.8,High-Speed,Masters,9,13.9,1,6,80.1,45,25,56.6,0,57.82,High,False
+STU12005,SE501,Spring 2025,3,67.3,66.7,67.1,2.68,4,20,Female,Medium,6.0,High-Speed,High School,5,12.5,7,5,88.8,50,26,52.1,2,51.31,High,False
+STU12097,DS201,Spring 2025,3,45.1,39.0,43.3,1.73,4,22,Female,Medium,43.0,High-Speed,Bachelors,12,17.6,4,8,39.1,40,22,54.9,5,53.27,High,True
+STU12099,DS201,Spring 2025,3,42.7,44.2,43.2,1.73,4,24,Male,Medium,44.7,Moderate,High School,13,19.9,2,10,53.6,40,24,59.7,3,60.07,High,True
+STU12124,SE501,Spring 2025,3,50.2,44.4,48.4,1.94,4,22,Other,Medium,5.9,High-Speed,High School,10,16.6,4,13,79.6,50,17,34.7,1,48.27,High,False
+STU12211,SE501,Spring 2025,3,51.9,52.9,52.2,2.09,3,23,Female,High,0.5,High-Speed,High School,10,23.9,6,3,74.3,50,32,63.4,2,61.56,High,False
+STU12215,DB401,Spring 2025,3,59.5,56.8,58.7,2.35,4,19,Male,Medium,1.4,High-Speed,High School,9,15.4,3,2,66.3,50,33,65.3,5,59.41,High,False
+STU12221,DS201,Spring 2025,3,31.1,32.1,31.4,1.26,4,20,Female,Medium,1.0,High-Speed,High School,11,12.2,7,11,66.9,40,17,41.6,3,50.68,High,True
+STU12257,DB401,Spring 2025,3,37.8,41.2,38.8,1.55,4,24,Male,High,8.9,High-Speed,High School,6,16.8,9,6,56.2,50,25,49.8,0,45.14,High,False
+STU12285,DS201,Spring 2025,3,47.4,42.0,45.8,1.83,4,25,Male,Medium,14.2,High-Speed,Bachelors,8,7.1,5,8,67.0,45,17,37.6,4,44.2,High,False
+STU12292,CS101,Spring 2025,3,78.1,88.2,81.1,3.24,3,19,Male,Low,9.4,High-Speed,Bachelors,9,14.0,6,5,80.3,50,26,52.7,7,55.91,High,False
+STU12293,AI301,Spring 2025,3,33.5,30.0,32.5,1.3,4,23,Female,Low,10.6,High-Speed,Bachelors,11,9.1,4,10,48.1,40,23,58.5,5,55.37,High,True
+STU12302,CS101,Spring 2025,3,69.9,70.6,70.1,2.8,4,21,Female,Low,26.8,High-Speed,Masters,7,11.8,2,10,79.9,40,26,64.5,1,58.73,High,False
+STU12341,CS101,Spring 2025,3,64.9,76.4,68.4,2.74,4,25,Male,High,4.2,High-Speed,High School,8,18.4,4,11,80.3,45,23,51.7,0,53.91,High,False
+STU12450,DB401,Spring 2025,3,47.0,55.2,49.5,1.98,4,23,Male,Medium,8.0,High-Speed,High School,10,20.2,5,13,73.2,40,21,51.7,3,55.49,High,False
+STU12464,AI301,Spring 2025,3,58.9,69.9,62.2,2.49,4,20,Female,Medium,4.6,High-Speed,High School,8,21.4,2,11,73.7,45,23,51.5,3,52.49,High,False
+STU12504,DB401,Spring 2025,3,63.7,64.3,63.9,2.56,3,25,Male,Medium,2.0,High-Speed,Bachelors,10,13.3,5,14,54.8,45,26,58.6,3,55.26,High,False
+STU12594,CS101,Spring 2025,3,43.4,45.3,44.0,1.76,3,24,Male,High,8.5,Moderate,Bachelors,9,20.4,2,6,55.8,40,24,60.6,2,54.96,High,False
+STU12600,DB401,Spring 2025,3,38.1,42.1,39.3,1.57,3,20,Female,High,6.0,Limited,High School,8,10.5,3,13,76.0,40,23,56.9,5,55.65,High,False
+STU12608,DS201,Spring 2025,3,50.0,57.4,52.2,2.09,3,23,Female,Medium,8.3,Moderate,Masters,9,28.4,5,8,74.1,50,28,55.8,3,56.22,High,False
+STU12661,DB401,Spring 2025,3,49.2,55.1,51.0,2.04,4,18,Female,Medium,7.2,Limited,Bachelors,7,12.2,6,3,72.6,40,16,39.9,6,44.97,High,False
+STU12669,SE501,Spring 2025,3,39.7,33.6,37.9,1.52,3,23,Male,Medium,14.7,Moderate,High School,10,8.1,2,3,60.6,50,25,50.5,4,52.37,High,True
+STU12680,AI301,Spring 2025,3,48.6,49.3,48.8,1.95,3,25,Male,Medium,1.2,Limited,Masters,17,10.4,8,12,55.3,50,32,63.2,1,68.16,High,False
+STU12686,DS201,Spring 2025,3,42.9,41.6,42.5,1.7,4,20,Male,High,5.2,High-Speed,Bachelors,7,21.3,7,12,59.3,40,22,55.3,2,50.01,High,False
+STU12716,DB401,Spring 2025,3,60.0,48.8,56.6,2.26,4,22,Female,Medium,18.7,Moderate,Bachelors,8,3.4,7,6,73.6,45,24,54.3,2,53.87,High,False
+STU12717,DS201,Spring 2025,3,40.6,42.7,41.2,1.65,4,22,Female,Medium,1.0,High-Speed,Bachelors,7,16.4,4,8,74.6,45,19,42.3,5,46.57,High,False
+STU12949,AI301,Spring 2025,3,31.2,32.3,31.5,1.26,3,24,Female,High,4.2,Limited,Doctorate,9,8.7,2,10,56.8,50,19,38.3,5,44.01,High,False
+STU12964,CS101,Spring 2025,3,53.3,61.8,55.9,2.24,3,20,Female,Low,16.7,Limited,Bachelors,9,17.2,8,13,92.9,50,26,51.5,0,57.83,High,False
+STU12982,DB401,Spring 2025,3,49.8,53.8,51.0,2.04,3,19,Female,Medium,9.0,Moderate,High School,6,14.7,4,5,59.4,40,16,40.9,4,41.33,High,False
+STU12990,AI301,Spring 2025,3,60.1,57.8,59.4,2.38,4,22,Male,Low,6.6,Limited,Bachelors,10,2.5,5,7,70.5,50,22,43.1,4,50.65,High,False
+STU12995,DS201,Spring 2025,3,47.9,46.6,47.5,1.9,4,24,Female,Low,15.8,Limited,Bachelors,8,1.0,5,5,67.8,50,29,57.4,2,54.26,High,False
+STU13010,CS101,Spring 2025,3,36.4,37.4,36.7,1.47,4,24,Female,Low,3.3,High-Speed,Bachelors,8,19.0,4,10,69.9,40,21,51.9,5,51.93,High,False
+STU13022,SE501,Spring 2025,3,46.2,55.6,49.0,1.96,4,25,Female,High,4.3,High-Speed,High School,7,16.6,7,4,85.6,45,18,40.8,2,48.02,High,False
+STU13081,AI301,Spring 2025,3,39.7,42.7,40.6,1.62,4,23,Female,High,4.8,High-Speed,Masters,9,12.3,3,5,69.3,40,15,36.9,3,45.81,High,False
+STU13099,CS101,Spring 2025,3,25.0,36.9,28.3,1.13,3,20,Male,Medium,2.1,Limited,High School,9,18.4,5,11,63.1,40,26,64.3,2,58.27,High,False
+STU13157,AI301,Spring 2025,3,46.4,37.9,43.8,1.75,4,25,Male,Medium,38.8,High-Speed,Bachelors,13,12.9,4,3,46.6,50,34,67.8,4,62.72,High,True
+STU13177,SE501,Spring 2025,3,55.9,54.8,55.6,2.22,4,22,Female,Medium,8.4,High-Speed,High School,9,10.2,3,9,70.5,40,26,66.2,3,60.7,High,False
+STU13249,DB401,Spring 2025,3,42.2,41.5,42.0,1.68,3,23,Female,Low,0.4,High-Speed,High School,7,16.7,4,13,91.6,40,18,45.3,3,51.47,High,False
+STU13292,DB401,Spring 2025,3,48.7,50.8,49.3,1.97,4,21,Male,High,2.1,Moderate,High School,10,17.3,2,10,74.6,50,27,53.6,2,56.72,High,False
+STU13315,AI301,Spring 2025,3,46.2,47.7,46.6,1.86,3,23,Female,Medium,10.8,Moderate,High School,12,8.8,3,11,40.3,45,22,49.6,5,50.86,High,False
+STU13381,CS101,Spring 2025,3,53.7,55.0,54.1,2.16,3,19,Male,Low,6.6,Moderate,Bachelors,12,6.4,1,3,48.6,45,32,71.4,4,63.42,High,False
+STU13388,CS101,Spring 2025,3,44.9,49.2,46.2,1.85,3,25,Male,High,6.8,Moderate,High School,8,9.5,3,2,58.1,50,26,51.8,2,49.52,High,False
+STU13515,SE501,Spring 2025,3,51.2,52.4,51.6,2.06,3,19,Female,High,7.5,High-Speed,High School,10,12.6,5,10,71.4,50,26,52.4,3,55.48,High,False
+STU13546,AI301,Spring 2025,3,40.7,40.7,40.7,1.63,4,23,Male,Low,24.3,High-Speed,Bachelors,12,12.5,4,13,59.3,40,25,63.2,2,61.46,High,True
+STU13558,CS101,Spring 2025,3,50.9,56.0,52.4,2.1,3,19,Male,Low,5.4,Moderate,Doctorate,5,19.7,1,10,58.1,50,20,39.6,4,38.92,High,False
+STU13562,DB401,Spring 2025,3,64.2,74.1,67.2,2.69,3,24,Male,High,1.2,High-Speed,Bachelors,10,17.7,6,6,68.7,50,29,58.9,3,58.19,High,False
+STU13564,SE501,Spring 2025,3,40.3,37.6,39.5,1.58,4,18,Male,Low,0.5,High-Speed,Masters,8,14.6,4,7,76.0,40,21,53.1,5,53.75,High,False
+STU13579,SE501,Spring 2025,3,48.1,45.8,47.4,1.9,4,24,Female,High,0.7,High-Speed,Masters,8,11.9,4,10,46.2,45,23,51.0,2,46.74,High,False
+STU13591,DB401,Spring 2025,3,44.2,48.0,45.3,1.81,3,21,Male,Medium,8.6,High-Speed,Bachelors,6,15.8,3,5,78.8,45,22,48.0,0,48.76,High,False
+STU13610,DS201,Spring 2025,3,58.7,55.3,57.7,2.31,3,24,Female,Medium,4.8,Limited,Masters,7,9.5,3,5,75.8,50,32,63.5,1,57.41,High,False
+STU13621,DS201,Spring 2025,3,56.5,58.4,57.1,2.28,3,23,Male,Low,10.8,High-Speed,High School,8,16.4,4,7,79.0,45,26,57.9,2,56.75,High,False
+STU13649,SE501,Spring 2025,3,42.5,45.0,43.2,1.73,3,19,Other,High,20.7,High-Speed,Bachelors,12,19.9,2,11,82.4,40,21,53.2,2,61.08,High,True
+STU13699,DB401,Spring 2025,3,43.6,43.8,43.7,1.75,4,21,Male,High,13.7,High-Speed,High School,4,5.0,6,10,65.2,45,25,56.3,4,47.19,High,False
+STU13705,CS101,Spring 2025,3,39.8,34.9,38.3,1.53,3,20,Female,High,0.7,High-Speed,Bachelors,7,21.3,6,6,70.3,40,15,36.9,3,43.01,High,False
+STU13744,CS101,Spring 2025,3,46.6,52.2,48.3,1.93,4,22,Male,Low,7.4,High-Speed,High School,9,16.5,4,8,60.5,40,25,63.6,4,57.4,High,False
+STU13745,AI301,Spring 2025,3,54.0,51.4,53.2,2.13,3,25,Male,Medium,5.5,Limited,Bachelors,11,1.7,3,4,65.4,50,27,54.7,2,56.93,High,False
+STU13747,SE501,Spring 2025,3,44.4,37.2,42.3,1.69,3,19,Male,Medium,10.6,High-Speed,Bachelors,7,17.3,4,5,48.4,45,27,59.1,3,49.73,High,False
+STU13772,DB401,Spring 2025,3,51.3,49.9,50.9,2.04,3,23,Male,Medium,25.0,Moderate,High School,8,23.5,2,6,51.8,40,21,52.6,2,48.66,High,False
+STU13807,DB401,Spring 2025,3,61.2,46.7,56.8,2.27,3,20,Male,Low,1.5,High-Speed,Doctorate,10,16.6,6,11,60.1,40,25,61.3,1,57.67,High,False
+STU13831,AI301,Spring 2025,3,65.2,65.6,65.3,2.61,3,21,Female,Low,9.6,High-Speed,Bachelors,8,15.8,4,6,83.5,50,26,51.2,5,54.3,High,False
+STU13936,DS201,Spring 2025,3,65.6,69.9,66.9,2.68,4,23,Male,Medium,11.3,High-Speed,Masters,9,20.6,8,13,100.0,50,20,40.2,4,53.6,High,False
+STU13965,SE501,Spring 2025,3,52.4,58.9,54.3,2.17,4,18,Female,Low,0.7,Limited,High School,7,13.1,8,4,42.4,45,24,54.4,2,46.18,High,False
+STU14026,DB401,Spring 2025,3,60.8,68.9,63.2,2.53,3,19,Male,Low,5.5,Moderate,Masters,11,30.1,5,5,89.1,45,19,41.5,4,55.07,High,False
+STU14031,DS201,Spring 2025,3,51.2,43.3,48.8,1.95,4,25,Male,Low,9.5,High-Speed,Bachelors,14,8.8,0,14,65.3,40,29,72.3,4,70.21,High,False
+STU14064,AI301,Spring 2025,3,38.0,39.4,38.4,1.54,3,21,Female,High,22.2,High-Speed,Bachelors,9,18.0,2,7,61.1,50,27,53.5,3,52.47,High,False
+STU14077,CS101,Spring 2025,3,54.6,56.9,55.3,2.21,4,24,Male,High,18.1,High-Speed,High School,9,20.3,3,14,74.9,45,19,42.4,2,49.68,High,False
+STU14100,AI301,Spring 2025,3,51.5,57.3,53.2,2.13,4,25,Female,Medium,4.9,Limited,Masters,9,14.0,7,5,55.5,40,22,54.5,4,51.85,High,False
+STU14130,CS101,Spring 2025,3,36.5,33.2,35.5,1.42,4,24,Male,High,1.5,Moderate,High School,4,15.6,1,5,51.0,50,20,40.8,3,36.6,High,False
+STU14166,DS201,Spring 2025,3,56.7,52.1,55.3,2.21,4,21,Male,Medium,9.4,Limited,Masters,6,13.9,2,13,62.9,50,32,63.7,2,53.43,High,False
+STU14173,DB401,Spring 2025,3,54.5,48.4,52.7,2.11,3,20,Female,High,13.1,High-Speed,Bachelors,9,16.7,6,3,77.8,45,24,52.7,1,55.41,High,False
+STU14177,AI301,Spring 2025,3,40.0,30.9,37.3,1.49,3,19,Female,Medium,4.0,High-Speed,High School,13,9.4,3,12,60.3,40,23,58.3,3,60.71,High,True
+STU14237,DS201,Spring 2025,3,46.7,51.2,48.1,1.92,3,22,Female,Medium,7.5,Moderate,Bachelors,7,17.5,8,11,59.1,40,18,44.3,7,44.47,High,False
+STU14248,SE501,Spring 2025,3,43.4,44.5,43.7,1.75,3,19,Female,Low,15.0,High-Speed,High School,6,22.7,5,10,57.7,45,14,30.0,3,35.54,High,False
+STU14288,AI301,Spring 2025,3,51.2,46.8,49.9,2.0,4,25,Male,Medium,20.0,Moderate,High School,11,14.3,3,5,66.2,50,28,55.7,3,57.59,High,False
+STU14353,SE501,Spring 2025,3,35.3,41.4,37.1,1.48,3,23,Female,Medium,29.4,High-Speed,Bachelors,8,13.6,7,7,58.7,45,23,51.7,1,49.59,High,False
+STU14407,DB401,Spring 2025,3,52.8,53.7,53.1,2.12,4,18,Male,Medium,0.6,High-Speed,High School,12,9.4,1,9,64.7,40,22,53.8,3,57.84,High,False
+STU14416,DB401,Spring 2025,3,25.0,30.0,26.5,1.06,3,24,Male,High,5.7,Moderate,Bachelors,9,13.2,5,3,41.2,45,18,39.3,1,41.39,High,False
+STU14448,SE501,Spring 2025,3,51.9,46.5,50.3,2.01,3,23,Male,Medium,0.8,Moderate,High School,8,16.7,0,2,78.4,45,28,62.6,5,58.98,High,False
+STU14491,SE501,Spring 2025,3,60.0,65.8,61.7,2.47,4,23,Female,Low,6.1,High-Speed,High School,8,21.2,1,3,74.2,50,31,61.7,4,57.69,High,False
+STU14544,AI301,Spring 2025,3,73.1,78.4,74.7,2.99,4,19,Male,Medium,0.8,Moderate,Bachelors,10,16.5,4,3,67.9,40,25,63.5,2,60.33,High,False
+STU14547,DB401,Spring 2025,3,46.9,45.8,46.6,1.86,4,19,Female,High,23.3,High-Speed,High School,12,9.2,4,12,47.2,40,23,57.5,4,56.19,High,False
+STU14555,DB401,Spring 2025,3,54.8,54.1,54.6,2.18,3,22,Female,Medium,0.8,High-Speed,High School,8,21.0,2,2,63.5,50,33,65.7,0,57.55,High,False
+STU14606,DB401,Spring 2025,3,51.6,54.8,52.5,2.1,4,18,Female,Medium,12.3,High-Speed,Bachelors,3,18.6,2,3,57.8,40,21,53.7,3,42.91,High,False
+STU14608,DS201,Spring 2025,3,55.3,52.1,54.3,2.17,4,21,Female,Medium,12.5,Moderate,Bachelors,5,20.2,3,7,75.5,40,18,46.0,1,45.6,High,False
+STU14693,SE501,Spring 2025,3,55.5,53.4,54.9,2.2,4,23,Female,Medium,5.8,High-Speed,High School,8,19.5,7,11,83.2,40,19,48.0,2,52.64,High,False
+STU14720,DB401,Spring 2025,3,36.0,30.0,34.2,1.37,3,25,Male,Low,0.3,High-Speed,High School,8,18.2,3,2,51.3,50,29,58.2,5,51.36,High,False
+STU14722,CS101,Spring 2025,3,39.7,34.7,38.2,1.53,3,18,Male,Low,24.4,High-Speed,Bachelors,8,16.2,4,10,66.4,50,21,41.8,6,46.18,High,False
+STU14797,DS201,Spring 2025,3,46.9,56.0,49.6,1.98,4,20,Female,Medium,16.2,Moderate,Bachelors,8,16.7,3,12,85.5,45,21,46.9,3,52.55,High,False
+STU14831,DS201,Spring 2025,3,57.6,68.6,60.9,2.44,4,20,Female,High,9.0,High-Speed,Bachelors,13,18.0,2,5,73.2,50,36,72.0,5,70.14,High,False
+STU14835,DS201,Spring 2025,3,40.1,37.0,39.2,1.57,4,18,Male,Low,43.4,Limited,High School,11,21.2,6,3,70.5,45,20,45.2,3,53.2,High,True
+STU14846,CS101,Spring 2025,3,55.1,53.8,54.7,2.19,3,22,Female,Low,5.5,High-Speed,High School,9,13.9,3,9,61.9,45,22,47.9,1,49.83,High,False
+STU14864,DS201,Spring 2025,3,52.1,56.2,53.3,2.13,4,22,Male,Medium,15.1,Moderate,Doctorate,8,9.8,4,12,76.9,40,20,50.5,0,52.63,High,False
+STU14908,CS101,Spring 2025,3,46.0,47.3,46.4,1.86,3,18,Female,High,1.1,High-Speed,High School,6,18.2,3,5,80.1,50,27,54.2,0,52.12,High,False
+STU14984,DS201,Spring 2025,3,32.0,34.0,32.6,1.3,3,22,Female,Medium,19.2,Moderate,Bachelors,15,9.4,5,13,79.6,40,20,49.2,2,63.02,High,True

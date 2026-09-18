@@ -1,0 +1,6 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10002,CS101,Fall 2025,4,65.3,67.8,66.1,2.64,3,24,Female,Low,18.1,Moderate,Bachelors,17,14.2,3,6,61.4,40,31,78.3,5,76.93,Low,False
+STU10043,DS201,Fall 2025,4,70.9,60.1,67.7,2.71,3,18,Female,Medium,4.2,Moderate,High School,10,13.1,4,11,70.1,40,25,63.5,2,60.77,Low,False
+STU10053,DS201,Fall 2025,4,45.0,41.2,43.8,1.75,3,22,Female,High,9.6,Moderate,Masters,18,17.4,1,9,72.8,45,28,62.7,1,72.91,Low,True
+STU10055,CS101,Fall 2025,4,56.8,65.1,59.3,2.37,3,20,Female,Low,35.4,Moderate,High School,15,18.6,4,5,73.7,50,42,83.0,5,78.74,Low,False
+STU10068,AI301,Fall 2025,4,54.3,61.4,56.4,2.26,3,24,Male,Medium,1.6,Moderate,Doctorate,13,19.6,2,2,81.6,40,28,69.8,4,70.72,Low,False

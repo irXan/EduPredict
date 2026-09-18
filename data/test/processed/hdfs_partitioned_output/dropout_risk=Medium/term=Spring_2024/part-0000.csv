@@ -1,0 +1,4 @@
+student_id,course_id,term,term_index,midterm_score,assignment_score,final_score,gpa,credits,age,gender,socio_economic_tier,distance_from_campus_km,internet_access,parent_education,lms_logins_per_week,video_watch_hours,forum_posts,quiz_attempts,avg_quiz_score,total_classes,classes_attended,attendance_rate,tardy_count,engagement_index,dropout_risk,is_anomaly
+STU10020,SE501,Spring 2024,1,58.4,51.3,56.3,2.25,3,20,Female,Medium,15.7,High-Speed,High School,8,24.2,1,8,89.3,45,25,56.6,1,58.16,Medium,False
+STU10047,CS101,Spring 2024,1,47.5,50.8,48.5,1.94,4,18,Female,High,2.3,High-Speed,High School,9,23.8,5,11,74.7,40,26,66.1,2,61.49,Medium,False
+STU10066,SE501,Spring 2024,1,69.6,64.7,68.1,2.72,4,21,Male,Medium,5.0,High-Speed,High School,12,16.6,2,7,81.0,45,32,70.6,1,69.5,Medium,False

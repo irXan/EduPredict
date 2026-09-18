@@ -1,0 +1,21 @@
+{
+  "alert_thresholds": {
+    "attendance_low": 60.0,
+    "gpa_low": 1.8,
+    "engagement_low": 45.0,
+    "medium_attendance": 75.0,
+    "medium_gpa": 2.5,
+    "medium_engagement": 65.0
+  },
+  "risk_score": {
+    "high_below": 55.0,
+    "medium_below": 68.0
+  },
+  "streaming": {
+    "batch_size": 5,
+    "interval_seconds": 1.0,
+    "socket_host": "localhost",
+    "socket_port": 9999,
+    "spark_master": "local[*]"
+  }
+}
